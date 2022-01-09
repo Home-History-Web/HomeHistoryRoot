@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Home History</title>
+
+    <!-- CSS INCLUDES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <!-- Kendo -->
+    <link rel="stylesheet" href="lib/kendo/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="lib/kendo/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="lib/kendo/css/kendo.default.mobile.min.css" />
+    <link rel="stylesheet" href="lib/kendo/css/kendo.bootstrap-main.min.css" />
+
+    <style>
+        body {
+            background-color: #fbfbfb;
+        }
+
+        @media (min-width: 991.98px) {
+            main {
+                padding-left: 240px;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 58px 0 0; /* Height of navbar */
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+            width: 240px;
+            z-index: 600;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                width: 100%;
+            }
+        }        
+        .sidebar .active {
+            border-radius: 5px;
+            box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+        }
+
+        .sidebar-sticky {
+            position: relative;
+            top: 0;
+            height: calc(100vh - 48px);
+            padding-top: 0.5rem;
+            overflow-x: hidden;
+            overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+        }
+    </style>
+
+
+    <!-- JAVASCRIPT INCLUDES -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script src="lib/kendo/js/kendo.all.min.js"></script>
+
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+
+    <!-- Custom scripts -->
+    <script>
+        $(document).ready(function(){
+            $(".list-group-item").click(function(){
+                $(".list-group-item").removeClass('active');
+
+                $(this).addClass('active');
+            });      
+        });
+    </script>
+
+</head>
+<body>
+    <!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-area fa-fw me-3"></i><span>Reports</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-globe fa-fw me-3"></i><span>International</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-building fa-fw me-3"></i><span>Partners</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-users fa-fw me-3"></i><span>Contacts</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">
+        Home History
+      </a>
+      <!-- Search form -->
+      <form class="d-none d-md-flex input-group w-auto my-auto">
+        <input
+               autocomplete="off"
+               type="search"
+               class="form-control rounded"
+               placeholder='Search (ctrl + "/" to focus)'
+               style="min-width: 225px"
+               />
+        <span class="input-group-text border-0"
+              ><i class="fas fa-search"></i
+          ></span>
+      </form>
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <li class="nav-item dropdown">
+          <a
+             class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+             href="#"
+             id="navbarDropdownMenuLink"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             >
+            <i class="fas fa-bell"></i>
+            <span class="badge rounded-pill badge-notification bg-danger"
+                  >1</span
+              >
+          </a>
+          <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuLink"
+              >
+            <li><a class="dropdown-item" href="#">Some message</a></li>
+            <li><a class="dropdown-item" href="#">Another message</a></li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Icon dropdown -->
+        <li class="nav-item dropdown">
+          <a
+             class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             >
+            <i class="fas fa-globe"></i>
+          </a>
+          <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdown"
+              >
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="united kingdom flag"></i>English
+                <i class="fa fa-check text-success ms-2"></i
+                  ></a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="poland flag"></i>Polski</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="china flag"></i>中文</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="japan flag"></i>日本語</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="germany flag"></i>Deutsch</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="france flag"></i>Français</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="spain flag"></i>Español</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="russia flag"></i>Русский</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="portugal flag"></i>Português</a
+                >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+            <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+            <i class="fa fa-users"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 38px">
+  <div class="container pt-4">
+        
+
+
+    <div id="example">
+        <div id="grid"></div>
+        <script>
+            var apiKey = '2b1e86b638620bf2404521e6e9e1b19e';
+
+            $(document).ready(function () {
+                loadRemote();                
+            });
+    
+            function onDataBound(e) {
+                var grid = this;
+                grid.table.find("tr").each(function () {
+                    var dataItem = grid.dataItem(this);
+                    var themeColor = dataItem.Discontinued ? 'success' : 'error';
+                    var text = dataItem.Discontinued ? 'available' : 'not available';
+    
+                    $(this).find(".badgeTemplate").kendoBadge({
+                        themeColor: themeColor,
+                        text: text,
+                    });
+    
+                    $(this).find(".rating").kendoRating({
+                        min: 1,
+                        max: 5,
+                        label: false,
+                        selection: "continuous"
+                    });
+    
+                    $(this).find(".sparkline-chart").kendoSparkline({
+                        legend: {
+                            visible: false
+                        },
+                        data: [dataItem.TargetSales],
+                        type: "bar",
+                        chartArea: {
+                            margin: 0,
+                            width: 180,
+                            background: "transparent"
+                        },
+                        seriesDefaults: {
+                            labels: {
+                                visible: true,
+                                format: '{0}%',
+                                background: 'none'
+                            }
+                        },
+                        categoryAxis: {
+                            majorGridLines: {
+                                visible: false
+                            },
+                            majorTicks: {
+                                visible: false
+                            }
+                        },
+                        valueAxis: {
+                            type: "numeric",
+                            min: 0,
+                            max: 130,
+                            visible: false,
+                            labels: {
+                                visible: false
+                            },
+                            minorTicks: { visible: false },
+                            majorGridLines: { visible: false }
+                        },
+                        tooltip: {
+                            visible: false
+                        }
+                    });
+    
+                    kendo.bind($(this), dataItem);
+                });
+            }
+    
+            function returnFalse() {
+                return false;
+            }
+    
+            function clientCategoryEditor(container, options) {
+                $('<input required name="Category">')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        autoBind: false,
+                        dataTextField: "CategoryName",
+                        dataValueField: "CategoryID",
+                        dataSource: {
+                            data: categories
+                        }
+                    });
+            }
+    
+            function clientCountryEditor(container, options) {
+                $('<input required name="Country">')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                        dataTextField: "CountryNameLong",
+                        dataValueField: "CountryNameShort",
+                        template: "<div class='dropdown-country-wrap'><img src='../content/web/country-flags/#:CountryNameShort#.png' alt='#: CountryNameLong#' title='#: CountryNameLong#' width='30' /><span>#:CountryNameLong #</span></div>",
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: " https://demos.telerik.com/kendo-ui/service/countries",
+                                    dataType: "jsonp"
+                                }
+                            }
+                        },
+                        autoWidth: true
+                    });
+            }
+
+            function loadLocal() {
+
+                var crudServiceBaseUrl = "https://demos.telerik.com/kendo-ui/service",
+                    dataSource = new kendo.data.DataSource({
+                        transport: {
+                            read: {
+                                url: crudServiceBaseUrl + "/detailproducts",
+                                dataType: "jsonp"
+                            },
+                            update: {
+                                url: crudServiceBaseUrl + "/detailproducts/Update",
+                                dataType: "jsonp"
+                            },
+                            destroy: {
+                                url: crudServiceBaseUrl + "/detailproducts/Destroy",
+                                dataType: "jsonp"
+                            },
+                            parameterMap: function (options, operation) {
+                                if (operation !== "read" && options.models) {
+                                    return { models: kendo.stringify(options.models) };
+                                }
+                            }
+                        },
+                        batch: true,
+                        pageSize: 20,
+                        autoSync: true,
+                        aggregate: [{
+                            field: "TotalSales",
+                            aggregate: "sum"
+                        }],
+                        group: {
+                            field: "Category.CategoryName",
+                            dir: "desc",
+                            aggregates: [
+                                { field: "TotalSales", aggregate: "sum" }
+                            ]
+                        },
+                        schema: {
+                            model: {
+                                id: "ProductID",
+                                fields: {
+                                    ProductID: { editable: false, nullable: true },
+                                    Discontinued: { type: "boolean", editable: false },
+                                    TotalSales: { type: "number", editable: false },
+                                    TargetSales: { type: "number", editable: false },
+                                    LastSupply: { type: "date" },
+                                    UnitPrice: { type: "number" },
+                                    UnitsInStock: { type: "number" },
+                                    Category: {
+                                        defaultValue: {
+                                            CategoryID: 8,
+                                            CategoryName: "Seafood"
+                                        }
+                                    },
+                                    Country: {
+                                        defaultValue: {
+                                            CountryNameLong: "Bulgaria",
+                                            CountryNameShort: "bg"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+    
+                $("#grid").kendoGrid({
+                    dataSource: dataSource,
+                    columnMenu: {
+                        filterable: false
+                    },
+                    height: 680,
+                    editable: "incell",
+                    pageable: true,
+                    sortable: true,
+                    navigatable: true,
+                    resizable: true,
+                    reorderable: true,
+                    groupable: true,
+                    filterable: true,
+                    dataBound: onDataBound,
+                    toolbar: ["excel", "pdf", "search"],
+                    columns: [{
+                        selectable: true,
+                        width: 75,
+                        attributes: {
+                            "class": "checkbox-align",
+                        },
+                        headerAttributes: {
+                            "class": "checkbox-align",
+                        }
+                    }, {
+                        field: "ProductName",
+                        title: "Product Name",
+                        template: "<div class='product-photo' style='background-image: url(../content/web/foods/#:data.ProductID#.jpg);'></div><div class='product-name'>#: ProductName #</div>",
+                        width: 300
+                    }, {
+                        field: "UnitPrice",
+                        title: "Price",
+                        format: "{0:c}",
+                        width: 105
+                    }, {
+                        field: "Discontinued",
+                        title: "In Stock",
+                        template: "<span id='badge_#=ProductID#' class='badgeTemplate'></span>",
+                        width: 130,
+                    }, {
+                        field: "Category.CategoryName",
+                        title: "Category",
+                        editor: clientCategoryEditor,
+                        groupHeaderTemplate: "Category: #=data.value#, Total Sales: #=kendo.format('{0:c}', aggregates.TotalSales.sum)#",
+                        width: 125
+                    }, {
+                        field: "CustomerRating",
+                        title: "Rating",
+                        template: "<input id='rating_#=ProductID#' data-bind='value: CustomerRating' class='rating'/>",
+                        editable: returnFalse,
+                        width: 140
+                    }, {
+                        field: "Country.CountryNameLong",
+                        title: "Country",
+                        template: "<div class='k-text-center'><img src='../content/web/country-flags/#:data.Country.CountryNameShort#.png' alt='#: data.Country.CountryNameLong#' title='#: data.Country.CountryNameLong#' width='30' /></div>",
+                        editor: clientCountryEditor,
+                        width: 120
+                    }, {
+                        field: "UnitsInStock",
+                        title: "Units",
+                        width: 105
+                    }, {
+                        field: "TotalSales",
+                        title: "Total Sales",
+                        format: "{0:c}",
+                        width: 140,
+                        aggregates: ["sum"],
+                    }, {
+                        field: "TargetSales",
+                        title: "Target Sales",
+                        format: "{0:c}",
+                        template: "<span id='chart_#= ProductID#' class='sparkline-chart'></span>",
+                        width: 220
+                    },
+                    { command: "destroy", title: "&nbsp;", width: 120 }],
+                });                
+            }
+
+            function loadRemote() {
+
+                $("#grid").kendoGrid({
+                    dataSource: {
+                        type: "odata",
+                        transport: {
+                            read: function(options) {
+                                // make JSONP request to https://demos.telerik.com/kendo-ui/service/products
+                                $.ajax({
+                                    url: "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address?postalcode=80126&page=1&pagesize=100",
+                                    dataType: "json", // "jsonp" is required for cross-domain requests; use "json" for same-domain requests
+                                    headers: { 'apikey': apiKey },
+                                    success: function(result) {
+                                        debugger;
+
+                                        // notify the data source that the request succeeded
+                                        options.success(result.property);
+                                    },
+                                    error: function(result) {
+                                        // notify the data source that the request failed
+                                        options.error(result);
+                                    }
+                                });
+                            }
+
+                            // read: "https://api.gateway.attomdata.com/propertyapi/v1.0.0/property/address?postalcode=80126&page=1&pagesize=100",
+                            // type: 'GET',
+                            // dataType: "json",
+                            // beforeSend: function(req) {
+                            //     req.setRequestHeader('apikey', apiKey);
+                            // },
+                            // data: function() {
+                            //     return {
+                            //         skip: 0,
+                            //         take: $("#search").val() // send the value of the #search input to the remote service
+                            //     };
+                            // }
+                        },
+                        schema: {
+                            model: {
+                                fields: {
+                                    address_street: { type: "string", from: "address.line1" }
+                                }
+                            }
+                        },
+                        pageSize: 20,
+                        serverPaging: true,
+                        serverFiltering: true,
+                        serverSorting: true
+                    },
+                    height: 550,
+                    filterable: true,
+                    sortable: true,
+                    pageable: true,
+                    columns: [{
+                            field: "address_street",
+                            title: "Address"
+                        }
+                    ]
+                });       
+
+            }
+
+            var categories = [{
+                "CategoryID": 1,
+                "CategoryName": "Beverages"
+            }, {
+                "CategoryID": 2,
+                "CategoryName": "Condiments"
+            }, {
+                "CategoryID": 3,
+                "CategoryName": "Confections"
+            }, {
+                "CategoryID": 4,
+                "CategoryName": "Dairy Products"
+            }, {
+                "CategoryID": 5,
+                "CategoryName": "Grains/Cereals"
+            }, {
+                "CategoryID": 6,
+                "CategoryName": "Meat/Poultry"
+            }, {
+                "CategoryID": 7,
+                "CategoryName": "Produce"
+            }, {
+                "CategoryID": 8,
+                "CategoryName": "Seafood"
+            }];
+        </script>
+    
+        <style type="text/css">
+            .customer-photo {
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-size: 32px 35px;
+                background-position: center center;
+                vertical-align: middle;
+                line-height: 32px;
+                box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+                margin-left: 5px;
+            }
+    
+            .customer-name {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 32px;
+                padding-left: 3px;
+            }
+    
+            .k-grid tr .checkbox-align {
+                text-align: center;
+                vertical-align: middle;
+            }
+    
+            .product-photo {
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background-size: 32px 35px;
+                background-position: center center;
+                vertical-align: middle;
+                line-height: 32px;
+                box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+                margin-right: 5px;
+            }
+    
+            .product-name {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 32px;
+                padding-left: 3px;
+            }
+    
+            .k-rating-container .k-rating-item {
+                padding: 4px 0;
+            }
+    
+            .k-rating-container .k-rating-item .k-icon {
+                font-size: 16px;
+            }
+    
+            .dropdown-country-wrap {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: center;
+                white-space: nowrap;
+            }
+    
+            .dropdown-country-wrap img {
+                margin-right: 10px;
+            }
+    
+            #grid .k-grid-edit-row > td > .k-rating {
+                margin-left: 0;
+                width: 100%;
+            }
+    
+            .k-grid .k-grid-search {
+                margin-left: auto;
+                margin-right: 0;
+            }
+        </style>
+        </div>
+
+
+
+
+  </div>
+</main>
+</body>
+</html>
+
