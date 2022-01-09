@@ -5,8 +5,7 @@ $.hh.data = {
         var defaults = {
             postalCode: "81611",
             page: 1,
-            pageSize: 15000,
-            stripEmptyAddresses: true
+            pageSize: 1500
         };
 
         var objOptions = $.extend(defaults, options);
@@ -23,7 +22,13 @@ $.hh.data = {
 
             }
         }).then(function(result) {
-            return result.property;
+            let nonEmptyProperties = _.filter(
+                result.property, function(prop) {
+                   return !prop.address.line1 == '';
+                }
+            );
+
+            return nonEmptyProperties;
         });
     }
 };
