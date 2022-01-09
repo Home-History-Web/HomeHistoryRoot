@@ -3,9 +3,10 @@ $.hh.data = {
     getPropertiesForZip: function(options){
         
         var defaults = {
-            postalCode: "80126",
+            postalCode: "81611",
             page: 1,
-            pageSize: 15000
+            pageSize: 15000,
+            stripEmptyAddresses: true
         };
 
         var objOptions = $.extend(defaults, options);

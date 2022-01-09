@@ -535,7 +535,9 @@
 
                 // make JSONP request to https://demos.telerik.com/kendo-ui/service/products
                 $.hh.data.getPropertiesForZip({
-                    postalCode: "80126"
+                    postalCode: "81611",
+                    page: 1,
+                    pageSize: 1500
                 }).then(function(properties) {
 
                     $("#grid").kendoGrid({

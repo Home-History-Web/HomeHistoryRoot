@@ -33,7 +33,7 @@ window.ENABLE_DEBUGGING = document.location.hostname === 'localhost' || /ENABLE_
 (function ($) {
     'use strict';
     $.hh = {
-        apiKey: '2b1e86b638620bf2404521e6e9e1b19e',     // The ATTOM api key
+        apiKey: '2e860cf042da5b0105d53b4fbe445709',     // The ATTOM api key
         isClientSideDebugging: function () {
             return window.ENABLE_DEBUGGING;
         },
