@@ -1,0 +1,21 @@
+<html>
+    <head>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjK5YY2eSQnJBocsTyqryOS0iLiyQwulU&libraries=places"></script>
+        
+<script type="JAVASCRIPT">
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        new google.maps.places.Autocomplete(input);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+      </head>
+      <body>
+        
+        <input id="searchTextField" type="text" size="50">
+        
+      </body>
+</html>
