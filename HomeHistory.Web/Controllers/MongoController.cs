@@ -16,7 +16,7 @@ public class MongoController : ControllerBase
 
     }
 
-    [HttpGet("Property/{id}")]
+    [HttpGet("Property/Get/{id}")]
     public Property GetMongoItem2(string id)
     {
         IMongoCollection<Property> objMT;
