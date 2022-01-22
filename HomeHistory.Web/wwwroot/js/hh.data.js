@@ -76,5 +76,129 @@ $.hh.data = {
 
             return nonEmptyProperties;
         });
+    },
+    /**
+     * 
+       $.hh.data.getProperties({
+            "emailAddress":"homeHistoryWeb@gmail.com"
+        }).then(function(properties) {
+            debugger;
+        });
+
+     * @param {*} options 
+     * @returns 
+     */
+    getProperties: function(options){
+        
+        var defaults = {
+            "emailAddress":"homeHistoryWeb@gmail.com"
+        };
+
+        var objOptions = $.extend(defaults, options);
+
+        return $.ajax({
+            type: "GET", 
+            url: "https://localhost:7122/Mongo/Properties/" + objOptions.emailAddress,
+            contentType: "application/json",
+            dataType: "json", 
+            // headers: { 'apikey': $.hh.apiKey },
+            success: function(result) {
+                $.hh.properties = result;
+                
+                return result;
+            },
+            error: function(result) {
+                // notify the data source that the request failed
+                return result;
+            }
+        }).then(function(result) {
+            // done
+            return result;
+        });
+    },
+    /**
+     * 
+       $.hh.data.deleteProperty({
+            id:""
+        }).then(function(result) {
+            debugger;
+        });
+
+     * @param {*} options 
+     * @returns 
+     */
+    deleteProperty: function(options){
+        
+        var defaults = {
+            "id":""
+        };
+
+        var objOptions = $.extend(defaults, options);
+
+        return $.ajax({
+            type: "GET", 
+            url: "https://localhost:7122/Mongo/Property/Remove/" + objOptions.id,
+            contentType: "application/json",
+            dataType: "json", 
+            // headers: { 'apikey': $.hh.apiKey },
+            success: function(result) {
+                return result;
+            },
+            error: function(result) {
+                // notify the data source that the request failed
+                return result;
+            }
+        }).then(function(result) {
+            // done
+            return result;
+        });
+    },
+    /**
+       $.hh.data.addProperty({
+            "line1":"324 Inverness Dr S",
+            "line2":"",
+            "city":"Littleton",
+            "state":"CO",
+            "zip":"34534",
+            "formattedAddress":"324 Inverness Dr S\nENGLEWOOD CO 80112-6158\nUNITED STATES"
+        }).then(function(properties) {
+            debugger;
+        });
+
+     * @param {*} options 
+     * @returns 
+     */
+    addProperty: function(options){
+        
+        var defaults = {
+            "line1":"",
+            "line2":"",
+            "city":"",
+            "state":"",
+            "zip":"",
+            "formattedAddress":"",
+            "emailAddress":"homeHistoryWeb@gmail.com"
+        };
+
+        var objOptions = $.extend(defaults, options);
+
+        return $.ajax({
+            type: "POST", 
+            url: "https://localhost:7122/Mongo/Property/Add",
+            contentType: "application/json",
+            dataType: "json", 
+            // headers: { 'apikey': $.hh.apiKey },
+            data: JSON.stringify(objOptions),
+            success: function(result) {
+                return result;
+            },
+            error: function(result) {
+                // notify the data source that the request failed
+                return result;
+            }
+        }).then(function(result) {
+            // done
+            return result;
+        });
     }
 };

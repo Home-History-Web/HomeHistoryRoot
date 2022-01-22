@@ -15,5 +15,6 @@ public class Property {
     public string state  { get; set; } = "";
     public string zip  { get; set; } = "";
     public string formattedAddress  { get; set; } = "";
+    public string emailAddress  { get; set; } = "";
 
 }

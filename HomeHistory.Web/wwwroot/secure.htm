@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Home History</title>
+
+    <!-- CSS INCLUDES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <!-- Kendo -->
+    <link rel="stylesheet" href="/lib/kendo/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="/lib/kendo/css/kendo.default.min.css" />
+    <link rel="stylesheet" href="/lib/kendo/css/kendo.default.mobile.min.css" />
+    <link rel="stylesheet" href="/lib/kendo/css/kendo.bootstrap-main.min.css" />
+
+    <link rel="stylesheet" href="/lib/toastr/build/toastr.min.css" />
+
+    <link rel="stylesheet" href="/css/hh.css" />
+    <link rel="stylesheet" href="/css/propertyTable.css" />
+    <link rel="stylesheet" href="/css/propertyLookup.css" />
+
+    <!-- JAVASCRIPT INCLUDES -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+
+    <script src="lib/kendo/js/kendo.all.min.js"></script>
+
+    <script src="/js/jQuery.extensions.js"></script>
+
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+    <script src="/lib/toastr/build/toastr.min.js"></script>
+
+    <!-- Home History scripts -->
+    <script src="/js/hh.js"></script>
+    <script src="/js/hh.data.js"></script>
+    <script src="/js/hh.models.js"></script>
+    <script src="/js/hh.propertyTable.js"></script>
+    <script src="/js/hh.propertyLookup.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="/js/secure.js"></script>
+
+</head>
+<body>
+    <!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true"><i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-chart-area fa-fw me-3"></i><span>Reports</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i class="fas fa-users fa-fw me-3"></i><span>Contacts</span></a>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" style="margin-left:10px;font-weight:bolder;font-size:x-large;">
+        <i class="fas fa-building fa-fw"></i> Home History
+      </a>
+      
+      <form class="d-none d-md-flex input-group w-auto my-auto">
+        <input
+               autocomplete="off"
+               type="search"
+               class="form-control rounded"
+               placeholder='Search Properties'
+               style="min-width: 225px"
+               />
+        <span class="input-group-text border-0"
+              ><i class="fas fa-search"></i
+          ></span>
+      </form>
+   
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <li class="nav-item dropdown">
+          <a
+             class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+             href="#"
+             id="navbarDropdownMenuLink"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             >
+            <i class="fas fa-bell"></i>
+            <span class="badge rounded-pill badge-notification bg-danger"
+                  >1</span
+              >
+          </a>
+          <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuLink"
+              >
+            <li><a class="dropdown-item" href="#">Some message</a></li>
+            <li><a class="dropdown-item" href="#">Another message</a></li>
+            <li>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Icon dropdown -->
+        <li class="nav-item dropdown">
+          <a
+             class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+             href="#"
+             id="navbarDropdown"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false"
+             >
+            <i class="fas fa-globe"></i>
+          </a>
+          <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdown"
+              >
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="united kingdom flag"></i>English
+                <i class="fa fa-check text-success ms-2"></i
+                  ></a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="poland flag"></i>Polski</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="china flag"></i>中文</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="japan flag"></i>日本語</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="germany flag"></i>Deutsch</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="france flag"></i>Français</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="spain flag"></i>Español</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="russia flag"></i>Русский</a
+                >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#"
+                 ><i class="portugal flag"></i>Português</a
+                >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+            <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+            <i class="fa fa-users"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a id="logout" class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 38px">
+  <div class="container pt-4">
+    <div id="divMainContent"></div>
+<!-- 
+    <div id="addyLookup" style="display:hidden;">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="line1" aria-describedby="addyHelp" placeholder="Enter address">
+        </div>
+    
+        <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px;"></div>
+    
+        <button type="button" id="btnAdd" class="btn btn-primary">Add</button>
+      </form>
+    
+      <input type="hidden" id="line2" type="line2"></input><br>
+      <input type="hidden" id="city" type="city"></input><br>
+      <input type="hidden" id="state" type="state"></input><br>
+      <input type="hidden" id="zip" type="zip"></input>
+    </div> -->
+
+  </div>
+
+</main>
+
+
+
+</body>
+</html>
+

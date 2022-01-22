@@ -33,6 +33,8 @@ window.ENABLE_DEBUGGING = document.location.hostname === 'localhost' || /ENABLE_
 (function ($) {
     'use strict';
     $.hh = {
+        emailAddress: '',
+        properties: [],
         apiKey: '2e860cf042da5b0105d53b4fbe445709',     // The ATTOM api key
         isClientSideDebugging: function () {
             return window.ENABLE_DEBUGGING;
@@ -71,6 +73,91 @@ window.ENABLE_DEBUGGING = document.location.hostname === 'localhost' || /ENABLE_
             }
 
             return deferred.promise();
-        }
+        },
+        
+
+        /*
+            Shows a modal pop up with a spinner
+
+            options = {
+                // The label at the top of the pop up
+                title: '',
+
+                // The content in the center of the pop up
+                text: '',
+
+                // Controls the visibility of the progress bar
+                showProgress: false,
+
+                // A number between 0 and 100, the progress bar will appear this % filled
+                // values less than zero produce an indeterminate progress bar that is constantly processing
+                progressValue: 20
+            }
+         */
+            showProcessing: function (options) {
+                const objThis = this;
+    
+                try {
+                    $.debug("Started hh.showProcessing()");    
+    
+                    var defaults = {
+                        text: "Processing... Please Wait",
+                        target: document.body
+                    },
+                        objOptions = $.extend(defaults, options);
+    
+                    //customize the default "Loading..." text
+                    kendo.ui.progress.messages = {
+                        loading: objOptions.text
+                    };
+                       
+                    $.hh.isProcessing = true;
+    
+                    var element = $(objOptions.target);
+
+                    kendo.ui.progress(element, true);
+                }
+                catch (ex) {
+                    $.debug('error', 'Exception caught in hh.showProcessing', ex);
+                }
+            },
+
+        /*
+            Shows a modal pop up with a spinner
+
+            options = {
+                // The label at the top of the pop up
+                title: '',
+
+                // The content in the center of the pop up
+                text: '',
+
+                // Controls the visibility of the progress bar
+                showProgress: false,
+
+                // A number between 0 and 100, the progress bar will appear this % filled
+                // values less than zero produce an indeterminate progress bar that is constantly processing
+                progressValue: 20
+            }
+         */
+            hideProcessing: function (options) {
+                const objThis = this;
+    
+                try {
+                    $.debug("Started hh.hideProcessing()");    
+    
+                    var defaults = {
+                        target: document.body
+                    },
+                        objOptions = $.extend(defaults, options);
+            
+                    var element = $(objOptions.target);
+
+                    kendo.ui.progress(element, false);
+                }
+                catch (ex) {
+                    $.debug('error', 'Exception caught in hh.hideProcessing', ex);
+                }
+            }
     }; // end JQuery.hh namespace
 })(jQuery);
