@@ -91,7 +91,7 @@ $.hh.data = {
     getProperties: function(options){
         
         var defaults = {
-            "emailAddress":"homeHistoryWeb@gmail.com"
+            "emailAddress": $.hh.emailAddress.toLowerCase()
         };
 
         var objOptions = $.extend(defaults, options);
@@ -177,7 +177,7 @@ $.hh.data = {
             "state":"",
             "zip":"",
             "formattedAddress":"",
-            "emailAddress":"homeHistoryWeb@gmail.com"
+            "emailAddress":$.hh.emailAddress.toLowerCase()
         };
 
         var objOptions = $.extend(defaults, options);

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $.hh.emailAddress = $.cookie('email').toLowerCase();
+    $.hh.accessToken = $.cookie('accessToken');
 
     $('#divMainContent').propertyTable({});  
 
