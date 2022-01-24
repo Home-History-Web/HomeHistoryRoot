@@ -8,6 +8,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace HomeHistory.AppLogic;
 
+/*
+This class will be used for all Mongo based app logic and access
+*/
 public class MongoApp {
 
     MongoClientSettings mSettings;
@@ -55,5 +58,14 @@ public class MongoApp {
         objMT = mDb.GetCollection<Property>("Properties");
 
         return objMT.Find<Property>(s => s.Id == id).FirstOrDefault();
+    }
+
+    public List<GoogleContact> GetContacts(string emailAddress)
+    {
+        IMongoCollection<GoogleContact> objMT;
+
+        objMT = mDb.GetCollection<GoogleContact>("Contacts");
+
+        return objMT.Find(s => s.OwnerEmailAddress == emailAddress).ToList();
     }
 }

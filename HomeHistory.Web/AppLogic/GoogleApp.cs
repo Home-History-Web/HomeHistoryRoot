@@ -5,6 +5,8 @@ namespace HomeHistory.AppLogic;
 
 public static class GoogleApp {
     /*
+    Fetch all Google Contacts for a user
+
     {
         "resourceName": "people/c4649341506570907445",
         "etag": "%EgkBAgkLLjc9Pj8aBAECBQciDGc4VktXRDFteXJzPQ==",
@@ -71,6 +73,9 @@ public static class GoogleApp {
         return jaConnections;
     }
 
+    /*
+        Fetch a page of google contacts
+    */
     private static JObject GoogleContactPage(string pageToken, string accessToken) {        
         HttpClient client = new HttpClient();  
         Uri geturi = null;
@@ -86,7 +91,10 @@ public static class GoogleApp {
 
         return JObject.Parse(response);
     }
-
+    
+    /*
+    Convert a JArray of Google Contacts into a list of GoogleContact objects
+    */
     public static List<GoogleContact> ConvertGoogleContacts(string OwnerEmail, JArray GoogleContacts) {
         List<GoogleContact> lstContacts = new List<GoogleContact>();
 
@@ -101,7 +109,7 @@ public static class GoogleApp {
 
                     foreach (JObject joPhone in jaPhoneNumbers){
                         lstPhoneNumbers.Add(new GPhoneNumber {
-                            Type = joPhone["type"].ToString(),
+                            Type = joPhone["type"] != null ? joPhone["type"].ToString() : "primary",
                             Number = joPhone["value"].ToString()
                         });
                     }
