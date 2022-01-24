@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <!-- Google Sign-In -->
+    <meta name="google-signin-client_id" content="611706495172-ovvr6hauh8gbjn8ictm2m964ijf814e7.apps.googleusercontent.com">
+
+    <title>Home History</title>
+
+    <!-- JAVASCRIPT INCLUDES -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Custom scripts -->
+
+    <script>
+        $(document).ready(function(){
+               
+        });
+
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
+        }
+    </script>
+
+</head>
+<body>
+
+<!--Main layout-->
+  <div>
+    
+    <div id="my-signin2"></div>
+
+    <script>
+      function onSuccess(result) {
+        console.log(result);
+      }
+
+      function onFailure(error) {
+        console.log(error);
+      }
+
+      function renderButton() {
+        gapi.signin2.render('my-signin2', {
+          'scope': 'profile email https://www.googleapis.com/auth/contacts.readonly',
+          'width': 240,
+          'height': 50,
+          'longtitle': true,
+          'theme': 'dark',
+          'onsuccess': onSuccess,
+          'onfailure': onFailure
+        });
+      }
+    </script>
+
+    <div id="g_id_onload"
+        data-client_id="611706495172-ovvr6hauh8gbjn8ictm2m964ijf814e7.apps.googleusercontent.com"
+        data-callback="onSuccess"
+        data-auto_prompt="false">
+    </div>
+    
+    <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left">
+    </div>
+
+
+  </div>
+  
+</body>
+</html>
+

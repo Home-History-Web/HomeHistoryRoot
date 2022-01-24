@@ -59,10 +59,11 @@
         <script>
         function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-
+            
             $.hh.emailAddress = googleUser.getBasicProfile().getEmail();
 
             $.cookie('email',$.hh.emailAddress);
+            $.cookie('id_token',googleUser.vc.id_token);
             $.cookie('access_token',googleUser.vc.access_token);
 
             console.log(googleUser);
@@ -77,7 +78,7 @@
 
         function renderButton() {
             gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
+            'scope': 'profile email https://www.googleapis.com/auth/contacts.readonly',
             'width': 240,
             'height': 50,
             'longtitle': true,

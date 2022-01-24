@@ -16,5 +16,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0"/>
     <PackageReference Include="Google.Apis" Version="1.55.0"/>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.15.1"/>
+    <PackageReference Include="Google.Apis.Core" Version="1.55.0"/>
+    <PackageReference Include="Google.Apis.Auth" Version="1.55.0"/>
+    <PackageReference Include="Google.Apis.PeopleService.v1" Version="1.55.0.2567"/>
+    <PackageReference Include="Google.Apis.Discovery.v1" Version="1.55.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.1"/>
   </ItemGroup>
 </Project>
