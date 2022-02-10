@@ -139,8 +139,7 @@
                     toolbar: ["excel", "pdf", "search"],
                     columns: [
                         { field: "formattedAddress", title: "Address" },
-                        { command: { text: "Delete",
-                                    click: function(e) {
+                        { command: { text: "Delete", click: function(e) {
                                         // prevent page scroll position change
                                         e.preventDefault();
                                         // e.target is the DOM element representing the button
@@ -158,8 +157,6 @@
                                             .find('.hh-property-grid')
                                             .data("kendoGrid")
                                             .removeRow(tr);
-
-
                                     } 
                         }, title: "Actions", width: "180px" }
                     ]
