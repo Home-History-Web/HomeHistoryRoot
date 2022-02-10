@@ -15,7 +15,7 @@
         */
         options: {
             propertyId: '',
-
+            property: {},
             /*
                 When set to true, will not create browser historiy entries
             */
@@ -51,7 +51,7 @@
                 objThis.bindEvents();
             });
 
-            fetchDataPromise = $.hh.data.getProperties({}).then(function (result) {
+            fetchDataPromise = $.hh.data.getProperty({}).then(function (result) {
                 objOptions.properties = result;
             });
 

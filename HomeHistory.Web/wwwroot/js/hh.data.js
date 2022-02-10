@@ -154,6 +154,43 @@ $.hh.data = {
         });
     },
     /**
+     * 
+       $.hh.data.getProperty({
+            id:""
+        }).then(function(result) {
+            debugger;
+        });
+
+     * @param {*} options 
+     * @returns 
+     */
+    getProperty: function(options){
+        
+        var defaults = {
+            "id":""
+        };
+
+        var objOptions = $.extend(defaults, options);
+
+        return $.ajax({
+            type: "GET", 
+            url: "https://localhost:7122/Mongo/Property/Get/" + objOptions.id,
+            contentType: "application/json",
+            dataType: "json", 
+            // headers: { 'apikey': $.hh.apiKey },
+            success: function(result) {
+                return result;
+            },
+            error: function(result) {
+                // notify the data source that the request failed
+                return result;
+            }
+        }).then(function(result) {
+            // done
+            return result;
+        });
+    },
+    /**
        $.hh.data.addProperty({
             "line1":"324 Inverness Dr S",
             "line2":"",

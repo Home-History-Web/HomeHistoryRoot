@@ -111,20 +111,20 @@
             });
         },
 
-        loadProperties: function() {
+        loadProperties: function () {
             var objThis = this,
                 objOptions = objThis.options;
 
             try {
                 $.debug('Started hh.propertyTable.loadProperties');
 
-                var sharedDataSource = new kendo.data.DataSource({  
+                var sharedDataSource = new kendo.data.DataSource({
                     data: objOptions.properties
                 });
-                
-                objThis.element
-                .find('.hh-property-grid')
-                .kendoGrid({
+
+                var objGrid = objThis.element.find('.hh-property-grid');
+
+                objGrid.kendoGrid({
                     dataSource: sharedDataSource,
                     height: 400,
                     editable: false,
@@ -135,33 +135,52 @@
                     reorderable: false,
                     groupable: false,
                     filterable: true,
+                    selectable: "row",
                     dataBound: $.noop(),
                     toolbar: ["excel", "pdf", "search"],
                     columns: [
                         { field: "formattedAddress", title: "Address" },
-                        { command: { text: "Delete", click: function(e) {
-                                        // prevent page scroll position change
-                                        e.preventDefault();
-                                        // e.target is the DOM element representing the button
-                                        var tr = $(e.target).closest("tr"); // get the current table row (tr)
-                                        // get the data bound to the current table row
-                                        var data = this.dataItem(tr);
-                                        var id = data.id;
-                                        
-                                        objThis.deleteProperty({
-                                            id: data.id,
-                                            property: data
-                                        });
+                        {
+                            command: {
+                                text: "Delete", click: function (e) {
+                                    // prevent page scroll position change
+                                    e.preventDefault();
+                                    // e.target is the DOM element representing the button
+                                    var tr = $(e.target).closest("tr"); // get the current table row (tr)
+                                    // get the data bound to the current table row
+                                    var data = this.dataItem(tr);
+                                    var id = data.id;
 
-                                        objThis.element
-                                            .find('.hh-property-grid')
-                                            .data("kendoGrid")
-                                            .removeRow(tr);
-                                    } 
-                        }, title: "Actions", width: "180px" }
-                    ]
+                                    objThis.deleteProperty({
+                                        id: data.id,
+                                        property: data
+                                    });
+
+                                    objThis.element
+                                        .find('.hh-property-grid')
+                                        .data("kendoGrid")
+                                        .removeRow(tr);
+                                }
+                            }, title: "Actions", width: "180px"
+                        }
+                    ],
+                    change: function (e) {
+                        debugger;
+
+                        var grid = objGrid.data("kendoGrid");
+
+                        if (grid.select()) {
+                            var selectedItem = grid.dataItem(grid.select());
+
+                            // Load the property lookup widget
+                            objThis.destroy();
+
+                            $('#divMainContent').propertyDetails({
+                                property: selectedItem
+                            });
+                        }
+                    }
                 });
-
             }
             catch (ex) {
                 $.debug('error', 'Error in hh.propertyTable.loadProperties', ex);
@@ -169,18 +188,18 @@
 
         },
 
-        deleteProperty: function(options) {   
-    
+        deleteProperty: function (options) {
+
             var defaults = {},
                 objThis = this,
                 objOptions = $.extend(defaults, options);
 
             try {
                 $.debug('Started hh.propertyTable.deleteProperty');
-                
+
                 $.hh.data.deleteProperty({
                     id: objOptions.id
-                }).then(function(result) {
+                }).then(function (result) {
                     new PNotify({
                         title: 'Success',
                         text: 'Property Removed',
