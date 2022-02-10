@@ -61,13 +61,16 @@
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
             
             $.hh.emailAddress = googleUser.getBasicProfile().getEmail();
+            
+            var idToken = googleUser.wc ? googleUser.wc.id_token : googleUser.vc.id_token;
+            var accessToken = googleUser.wc ? googleUser.wc.access_token : googleUser.vc.access_token;
 
             $.cookie('email',$.hh.emailAddress);
-            $.cookie('id_token',googleUser.vc.id_token);
-            $.cookie('access_token',googleUser.vc.access_token);
+            $.cookie('id_token',idToken);
+            $.cookie('access_token',accessToken);
 
             console.log(googleUser);
-            console.log(googleUser.vc.access_token);
+            console.log(accessToken);
 
             window.location.href = '/secure.htm';
         }
