@@ -19,8 +19,8 @@ $(document).ready(function () {
             $('#divMainContent').propertyTable('destroy');
         } else if ($('#divMainContent').is(':hh-propertyLookup')) {
             $('#divMainContent').propertyLookup('destroy');
-        } else if ($('#divMainContent').is(':hh-calendar')) {
-            $('#divMainContent').calendar('destroy');
+        } else if ($('#divMainContent').is(':hh-propertyDetails')) {
+            $('#divMainContent').propertyDetails('destroy');
         } else if ($('#divMainContent').is(':hh-calendar')) {
             $('#divMainContent').calendar('destroy');
         } else if ($('#divMainContent').is(':hh-reports')) {
