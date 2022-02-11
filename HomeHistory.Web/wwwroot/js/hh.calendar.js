@@ -269,13 +269,11 @@
                     date: new Date("2022/1/1"),
                     startTime: new Date("2022/1/2 07:00 AM"),
                     height: 600,
-                    width: 'full',
                     views: [
                         "day",
-                        { type: "workWeek", selected: true },
+                        { type: "workWeek" },
                         "week",
-                        "month",
-                        "year",
+                        { type: "month", selected: true },
                         "agenda",
                         { type: "timeline", eventHeight: 50}
                     ],

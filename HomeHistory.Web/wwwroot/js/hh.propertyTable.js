@@ -126,7 +126,7 @@
 
                 objGrid.kendoGrid({
                     dataSource: sharedDataSource,
-                    height: 400,
+                    height: 600,
                     editable: false,
                     pageable: true,
                     sortable: true,
