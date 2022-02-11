@@ -325,7 +325,8 @@
                             logic: "or",
                             filters: [
                                 { field: "ownerId", operator: "eq", value: 1 },
-                                { field: "ownerId", operator: "eq", value: 2 }
+                                { field: "ownerId", operator: "eq", value: 2 },
+                                { field: "ownerId", operator: "eq", value: 3 }
                             ]
                         }
                     },

@@ -1,13 +1,13 @@
 /*
-    $('#divMainContent').propertyDetails({});
+    $('#divMainContent').reports({});
 
-    $(':hh-propertyDetails').propertyDetails('option')
+    $(':hh-reports').reports('option')
 
     This widget will be used to display a table of properties
 */
 
 (function ($) {
-    $.widget("hh.propertyDetails", {
+    $.widget("hh.reports", {
 
         /*
             TEMPLATE: Put any publicly settable options here. Be careful to avoid 
@@ -29,7 +29,7 @@
                 markupPromise,
                 fetchDataPromise;
 
-            $.debug("Started hh.propertyDetails._create()");
+            $.debug("Started hh.reports._create()");
 
             /*
                 Declare and document important variables that the widget 
@@ -65,7 +65,7 @@
             var objThis = this,
                 objOptions = objThis.options;
 
-            return $.get('/ui/propertyDetails.htm', function (markup) {
+            return $.get('/ui/reports.htm', function (markup) {
                 objThis.element.append(markup);
             });
         },
@@ -77,13 +77,13 @@
             var objThis = this,
                 objOptions = objThis.options;
 
-            $.debug("Started hh.propertyDetails.bindEvents");
+            $.debug("Started hh.reports.bindEvents");
 
         },
 
 
         _init: function () {
-            $.debug("Started hh.propertyDetails._init");
+            $.debug("Started hh.reports._init");
 
             var objThis = this,
                 objOptions = objThis.options;
@@ -96,7 +96,7 @@
                 Trigger an init event
 
                 var initEvent = $.Event("Init Complete", {
-                    source: 'propertyDetails'
+                    source: 'reports'
                 });                
                 objThis.element.trigger(initEvent);
                 */
@@ -108,21 +108,21 @@
                 objOptions = objThis.options;
 
             try {
-                $.debug('Started hh.propertyDetails.loadProperty');
+                $.debug('Started hh.reports.loadProperty');
                 
                 objThis.element
                 .find('.hh-property-details');
 
             }
             catch (ex) {
-                $.debug('error', 'Error in hh.propertyDetails.loadProperty', ex);
+                $.debug('error', 'Error in hh.reports.loadProperty', ex);
             }
 
         },
 
         destroy: function () {
             try {
-                $.debug('Started hh.propertyDetails.destroy');
+                $.debug('Started hh.reports.destroy');
 
                 this.element
                     .off()
@@ -131,7 +131,7 @@
                 this._super();
             }
             catch (ex) {
-                $.debug('error', 'Error in hh.propertyDetails.destroy', ex);
+                $.debug('error', 'Error in hh.reports.destroy', ex);
             }
         }
 

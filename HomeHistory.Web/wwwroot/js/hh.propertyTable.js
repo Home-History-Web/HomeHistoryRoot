@@ -165,8 +165,6 @@
                         }
                     ],
                     change: function (e) {
-                        debugger;
-
                         var grid = objGrid.data("kendoGrid");
 
                         if (grid.select()) {

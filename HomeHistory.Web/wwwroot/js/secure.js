@@ -21,6 +21,10 @@ $(document).ready(function () {
             $('#divMainContent').propertyLookup('destroy');
         } else if ($('#divMainContent').is(':hh-calendar')) {
             $('#divMainContent').calendar('destroy');
+        } else if ($('#divMainContent').is(':hh-calendar')) {
+            $('#divMainContent').calendar('destroy');
+        } else if ($('#divMainContent').is(':hh-reports')) {
+            $('#divMainContent').reports('destroy');
         }
 
         switch (objText.toLowerCase()) {
@@ -30,7 +34,7 @@ $(document).ready(function () {
 
                 break;
             case "reports":
-                $('#divMainContent').propertyLookup();
+                $('#divMainContent').reports();
 
                 break;
             case "calendar":
