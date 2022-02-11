@@ -14,8 +14,6 @@
             putting reference types here, each widget will get the same copy 
         */
         options: {
-            propertyId: '',
-            property: {},
             /*
                 When set to true, will not create browser historiy entries
             */
@@ -51,11 +49,7 @@
                 objThis.bindEvents();
             });
 
-            fetchDataPromise = $.hh.data.getProperty({}).then(function (result) {
-                objOptions.properties = result;
-            });
-
-            objOptions.createPromise = $.when(markupPromise, fetchDataPromise)
+            objOptions.createPromise = $.when(markupPromise)
                 .always(function () {
                     $.hh.hideProcessing();
                 });
@@ -79,6 +73,20 @@
 
             $.debug("Started hh.reports.bindEvents");
 
+            objThis.element.on('click', '.chart-bar', function (evt) {
+                // Load the bar chart
+                objThis.loadBar();
+            }).on('click', '.chart-pie', function (evt) {
+                // Load the bar chart
+                objThis.loadPie();
+            }).on('click', '.chart-line', function (evt) {
+                // Load the bar chart
+                objThis.loadLine();
+            }).on('click', '.chart-gantt', function (evt) {
+                // Load the bar chart
+                objThis.loadGantt();
+            });
+
         },
 
 
@@ -89,8 +97,7 @@
                 objOptions = objThis.options;
 
             objOptions.createPromise.done(function () {
-                objThis.loadProperty();
-
+                objThis.loadBar();
 
                 /* 
                 Trigger an init event
@@ -103,19 +110,414 @@
             });
         },
 
-        loadProperty: function() {
+        loadBar: function () {
             var objThis = this,
                 objOptions = objThis.options;
 
             try {
-                $.debug('Started hh.reports.loadProperty');
-                
-                objThis.element
-                .find('.hh-property-details');
+                $.debug('Started hh.reports.loadBar');
+
+                if(objOptions.chart) {
+                    var chart = objThis.element.find('#divReport').data("kendoChart");
+                    
+                    chart.destroy();
+                }
+
+                objThis.element.find('#divReport').kendoChart({
+                    title: {
+                        text: "Gross domestic product growth /GDP annual %/"
+                    },
+                    legend: {
+                        position: "top"
+                    },
+                    seriesDefaults: {
+                        type: "column"
+                    },
+                    series: [{
+                        name: "United States",
+                        data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
+                    }, {
+                        name: "England",
+                        data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
+                    }, {
+                        name: "Germany",
+                        data: [0.010, -0.375, 1.161, 0.684, 3.7, 3.269, 1.083, -5.127, 3.690, 2.995]
+                    }, {
+                        name: "World",
+                        data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
+                    }],
+                    valueAxis: {
+                        labels: {
+                            format: "{0}%"
+                        },
+                        line: {
+                            visible: false
+                        },
+                        axisCrossingValue: 0
+                    },
+                    categoryAxis: {
+                        categories: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011],
+                        line: {
+                            visible: false
+                        },
+                        labels: {
+                            padding: { top: 135 }
+                        }
+                    },
+                    tooltip: {
+                        visible: true,
+                        format: "{0}%",
+                        template: "#= series.name #: #= value #"
+                    }
+                });
 
             }
             catch (ex) {
-                $.debug('error', 'Error in hh.reports.loadProperty', ex);
+                $.debug('error', 'Error in hh.reports.loadBar', ex);
+            }
+
+        },
+
+        loadPie: function () {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.reports.loadPie');
+
+                if(objOptions.chart) {
+                    var chart = objThis.element.find('#divReport').data("kendoChart");
+                    
+                    chart.destroy();
+                }
+
+                objThis.element.find('#divReport').kendoChart({
+                    title: {
+                        position: "bottom",
+                        text: "Share of Internet Population Growth, 2007 - 2012"
+                    },
+                    legend: {
+                        visible: false
+                    },
+                    chartArea: {
+                        background: ""
+                    },
+                    seriesDefaults: {
+                        labels: {
+                            visible: true,
+                            background: "transparent",
+                            template: "#= category #: \n #= value#%"
+                        }
+                    },
+                    series: [{
+                        type: "pie",
+                        startAngle: 150,
+                        data: [{
+                            category: "Asia",
+                            value: 53.8,
+                            color: "#9de219"
+                        }, {
+                            category: "Europe",
+                            value: 16.1,
+                            color: "#90cc38"
+                        }, {
+                            category: "Latin America",
+                            value: 11.3,
+                            color: "#068c35"
+                        }, {
+                            category: "Africa",
+                            value: 9.6,
+                            color: "#006634"
+                        }, {
+                            category: "Middle East",
+                            value: 5.2,
+                            color: "#004d38"
+                        }, {
+                            category: "North America",
+                            value: 3.6,
+                            color: "#033939"
+                        }]
+                    }],
+                    tooltip: {
+                        visible: true,
+                        format: "{0}%"
+                    }
+                });
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.reports.loadPie', ex);
+            }
+
+        },
+
+        loadLine: function () {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.reports.loadLine');
+
+                if(objOptions.chart) {
+                    var chart = objThis.element.find('#divReport').data("kendoChart");
+                    
+                    chart.destroy();
+                }
+
+                objThis.element.find('#divReport').kendoChart({
+                    title: {
+                        text: "Gross domestic product growth \n /GDP annual %/"
+                    },
+                    legend: {
+                        position: "bottom"
+                    },
+                    chartArea: {
+                        background: ""
+                    },
+                    seriesDefaults: {
+                        type: "line",
+                        style: "smooth"
+                    },
+                    series: [{
+                        name: "India",
+                        data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
+                    }, {
+                        name: "World",
+                        data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
+                    }, {
+                        name: "Russian Federation",
+                        data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
+                    }, {
+                        name: "Haiti",
+                        data: [-0.253, 0.362, -3.519, 1.799, 2.252, 3.343, 0.843, 2.877, -5.416, 5.590]
+                    }],
+                    valueAxis: {
+                        labels: {
+                            format: "{0}%"
+                        },
+                        line: {
+                            visible: false
+                        },
+                        axisCrossingValue: -10
+                    },
+                    categoryAxis: {
+                        categories: [2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011],
+                        majorGridLines: {
+                            visible: false
+                        },
+                        labels: {
+                            rotation: "auto"
+                        }
+                    },
+                    tooltip: {
+                        visible: true,
+                        format: "{0}%",
+                        template: "#= series.name #: #= value #"
+                    }
+                });
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.reports.loadLine', ex);
+            }
+
+        },
+
+        loadGantt: function () {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.reports.loadGantt');
+
+                if(objOptions.chart) {
+                    var chart = objThis.element.find('#divReport').data("kendoChart");
+                    
+                    chart.destroy();
+                }
+
+                $(document).ready(function () {
+                    var serviceRoot = "https://demos.telerik.com/kendo-ui/service";
+                    var tasksDataSource = new kendo.data.GanttDataSource({
+                        transport: {
+                            read: {
+                                url: serviceRoot + "/GanttTasks",
+                                dataType: "jsonp"
+                            },
+                            update: {
+                                url: serviceRoot + "/GanttTasks/Update",
+                                dataType: "jsonp",
+                                timeout: 5000
+                            },
+                            destroy: {
+                                url: serviceRoot + "/GanttTasks/Destroy",
+                                dataType: "jsonp",
+                                timeout: 5000
+                            },
+                            create: {
+                                url: serviceRoot + "/GanttTasks/Create",
+                                dataType: "jsonp",
+                                timeout: 5000
+                            },
+                            parameterMap: function (options, operation) {
+                                if (operation !== "read") {
+                                    return { models: kendo.stringify(options.models || [options]) };
+                                }
+                            }
+                        },
+                        schema: {
+                            model: {
+                                id: "id",
+                                fields: {
+                                    id: { from: "ID", type: "number" },
+                                    orderId: { from: "OrderID", type: "number", validation: { required: true } },
+                                    parentId: { from: "ParentID", type: "number", defaultValue: null, nullable: true, validation: { required: true } },
+                                    start: { from: "Start", type: "date" },
+                                    end: { from: "End", type: "date" },
+                                    title: { from: "Title", defaultValue: "", type: "string" },
+                                    percentComplete: { from: "PercentComplete", type: "number" },
+                                    summary: { from: "Summary", type: "boolean" },
+                                    expanded: { from: "Expanded", type: "boolean", defaultValue: true }
+                                }
+                            }
+                        },
+                        error: function (ev) {
+                            ev.sender.cancelChanges();
+                            kendo.alert("Task was not Created, Updated or Destroyed properly!</br></br>" +
+                                "If you are using this service for local demo or in dojo consider <a href='https://github.com/telerik/kendo-ui-demos-service/tree/master/demos-and-odata-v3'>downloading and running the service locally</a>.</br>" +
+                                "And make sure to set the <a href='https://github.com/telerik/kendo-ui-demos-service/blob/master/demos-and-odata-v3/KendoCRUDService/Models/Gantt/GanttTaskRepository.cs#L12'>UpdateDatabase</a> flag to true.");
+                        }
+                    });
+
+                    var dependenciesDataSource = new kendo.data.GanttDependencyDataSource({
+                        transport: {
+                            read: {
+                                url: serviceRoot + "/GanttDependencies",
+                                dataType: "jsonp"
+                            },
+                            update: {
+                                url: serviceRoot + "/GanttDependencies/Update",
+                                dataType: "jsonp"
+                            },
+                            destroy: {
+                                url: serviceRoot + "/GanttDependencies/Destroy",
+                                dataType: "jsonp"
+                            },
+                            create: {
+                                url: serviceRoot + "/GanttDependencies/Create",
+                                dataType: "jsonp"
+                            },
+                            parameterMap: function (options, operation) {
+                                if (operation !== "read") {
+                                    return { models: kendo.stringify(options.models || [options]) };
+                                }
+                            }
+                        },
+                        schema: {
+                            model: {
+                                id: "id",
+                                fields: {
+                                    id: { from: "ID", type: "number" },
+                                    predecessorId: { from: "PredecessorID", type: "number" },
+                                    successorId: { from: "SuccessorID", type: "number" },
+                                    type: { from: "Type", type: "number" }
+                                }
+                            }
+                        }
+                    });
+
+                    objThis.element.find('#divReport').kendoGantt({
+                        dataSource: tasksDataSource,
+                        dependencies: dependenciesDataSource,
+                        resources: {
+                            field: "resources",
+                            dataColorField: "Color",
+                            dataTextField: "Name",
+                            dataSource: {
+                                transport: {
+                                    read: {
+                                        url: serviceRoot + "/GanttResources",
+                                        dataType: "jsonp"
+                                    }
+                                },
+                                schema: {
+                                    model: {
+                                        id: "id",
+                                        fields: {
+                                            id: { from: "ID", type: "number" }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        assignments: {
+                            dataTaskIdField: "TaskID",
+                            dataResourceIdField: "ResourceID",
+                            dataValueField: "Units",
+                            dataSource: {
+                                transport: {
+                                    read: {
+                                        url: serviceRoot + "/GanttResourceAssignments",
+                                        dataType: "jsonp"
+                                    },
+                                    update: {
+                                        url: serviceRoot + "/GanttResourceAssignments/Update",
+                                        dataType: "jsonp"
+                                    },
+                                    destroy: {
+                                        url: serviceRoot + "/GanttResourceAssignments/Destroy",
+                                        dataType: "jsonp"
+                                    },
+                                    create: {
+                                        url: serviceRoot + "/GanttResourceAssignments/Create",
+                                        dataType: "jsonp"
+                                    },
+                                    parameterMap: function (options, operation) {
+                                        if (operation !== "read") {
+                                            return { models: kendo.stringify(options.models || [options]) };
+                                        }
+                                    }
+                                },
+                                schema: {
+                                    model: {
+                                        id: "ID",
+                                        fields: {
+                                            ID: { type: "number" },
+                                            ResourceID: { type: "number" },
+                                            Units: { type: "number" },
+                                            TaskID: { type: "number" }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        views: [
+                            "day",
+                            { type: "week", selected: true },
+                            "month"
+                        ],
+                        columns: [
+                            { field: "title", title: "Task", editable: true, width: 255 },
+                            { field: "start", title: "Actual Start Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
+                            { field: "end", title: "Actual End Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
+                            { field: "percentComplete", title: "% Complete", type: "number", editable: true, width: 100 }
+                        ],
+                        toolbar: ["append", "pdf"],
+                        height: 700,
+                        listWidth: "50%",
+                        showWorkHours: false,
+                        showWorkDays: false,
+                        snap: false
+                    }).data("kendoGantt");
+
+                    $(document).bind("kendo:skinChange", function () {
+                        gantt.refresh();
+                    });
+                });
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.reports.loadGantt', ex);
             }
 
         },
