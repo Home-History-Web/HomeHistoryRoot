@@ -3,7 +3,9 @@
 
     $(':hh-reports').reports('option')
 
-    This widget will be used to display a table of properties
+    This widget will be used to display various reports
+
+    https://docs.telerik.com/kendo-ui/controls/charts/chart-types/overview
 */
 
 (function ($) {
@@ -74,17 +76,17 @@
             $.debug("Started hh.reports.bindEvents");
 
             objThis.element.on('click', '.chart-bar', function (evt) {
-                // Load the bar chart
                 objThis.loadBar();
             }).on('click', '.chart-pie', function (evt) {
-                // Load the bar chart
                 objThis.loadPie();
             }).on('click', '.chart-line', function (evt) {
-                // Load the bar chart
                 objThis.loadLine();
+            }).on('click', '.chart-area', function (evt) {
+                objThis.loadArea();
             }).on('click', '.chart-gantt', function (evt) {
-                // Load the bar chart
                 objThis.loadGantt();
+            }).on('click', '.chart-scatter', function (evt) {
+                objThis.loadScatter();
             });
 
         },
@@ -117,11 +119,7 @@
             try {
                 $.debug('Started hh.reports.loadBar');
 
-                if(objOptions.chart) {
-                    var chart = objThis.element.find('#divReport').data("kendoChart");
-                    
-                    chart.destroy();
-                }
+                objThis.element.find('#divReport').empty();
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
@@ -178,6 +176,49 @@
 
         },
 
+        loadArea: function () {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.reports.loadArea');
+
+                objThis.element.find('#divReport').empty();
+
+                objThis.element.find('#divReport').kendoChart({
+                    title: {
+                        text: "Internet Users"
+                    },
+                    legend: {
+                        position: "bottom"
+                    },
+                    seriesDefaults: {
+                        type: "area"
+                    },
+                    series: [{
+                        name: "World",
+                        data: [15.7, 16.7, 20, 23.5, 26.6]
+                    }, {
+                        name: "United States",
+                        data: [67.96, 68.93, 75, 74, 78]
+                    }],
+                    valueAxis: {
+                        labels: {
+                            format: "{0}%"
+                        }
+                    },
+                    categoryAxis: {
+                        categories: [2005, 2006, 2007, 2008, 2009]
+                    }
+                });
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.reports.loadArea', ex);
+            }
+
+        },
+
         loadPie: function () {
             var objThis = this,
                 objOptions = objThis.options;
@@ -185,11 +226,7 @@
             try {
                 $.debug('Started hh.reports.loadPie');
 
-                if(objOptions.chart) {
-                    var chart = objThis.element.find('#divReport').data("kendoChart");
-                    
-                    chart.destroy();
-                }
+                objThis.element.find('#divReport').empty();
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
@@ -258,11 +295,7 @@
             try {
                 $.debug('Started hh.reports.loadLine');
 
-                if(objOptions.chart) {
-                    var chart = objThis.element.find('#divReport').data("kendoChart");
-                    
-                    chart.destroy();
-                }
+                objThis.element.find('#divReport').empty();
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
@@ -323,6 +356,62 @@
 
         },
 
+        loadScatter: function () {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.reports.loadScatter');
+
+                objThis.element.find('#divReport').empty();
+
+                objThis.element.find('#divReport').kendoChart({
+                    title: {
+                        text: "Charge current vs. charge time"
+                    },
+                    legend: {
+                        visible: true
+                    },
+                    seriesDefaults: {
+                        type: "scatterLine"
+                    },
+                    series: [{
+                        name: "0.8C",
+                        data: [[10, 10], [15, 20], [20, 25], [32, 40], [43, 50], [55, 60], [60, 70], [70, 80], [90, 100]]
+                    }, {
+                        name: "1.6C",
+                        data: [[10, 40], [17, 50], [18, 70], [35, 90], [47, 95], [60, 100]]
+                    }, {
+                        name: "3.1C",
+                        data: [[10, 70], [13, 90], [25, 100]]
+                    }],
+                    xAxis: {
+                        max: 90,
+                        labels: {
+                            format: "{0}m"
+                        },
+                        title: {
+                            text: "Time"
+                        }
+                    },
+                    yAxis: {
+                        max: 100,
+                        labels: {
+                            format: "{0}%"
+                        },
+                        title: {
+                            text: "Charge"
+                        }
+                    }
+                });
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.reports.loadScatter', ex);
+            }
+
+        },
+
         loadGantt: function () {
             var objThis = this,
                 objOptions = objThis.options;
@@ -330,189 +419,184 @@
             try {
                 $.debug('Started hh.reports.loadGantt');
 
-                if(objOptions.chart) {
-                    var chart = objThis.element.find('#divReport').data("kendoChart");
-                    
-                    chart.destroy();
-                }
+                objThis.element.find('#divReport').empty();
 
-                $(document).ready(function () {
-                    var serviceRoot = "https://demos.telerik.com/kendo-ui/service";
-                    var tasksDataSource = new kendo.data.GanttDataSource({
-                        transport: {
-                            read: {
-                                url: serviceRoot + "/GanttTasks",
-                                dataType: "jsonp"
-                            },
-                            update: {
-                                url: serviceRoot + "/GanttTasks/Update",
-                                dataType: "jsonp",
-                                timeout: 5000
-                            },
-                            destroy: {
-                                url: serviceRoot + "/GanttTasks/Destroy",
-                                dataType: "jsonp",
-                                timeout: 5000
-                            },
-                            create: {
-                                url: serviceRoot + "/GanttTasks/Create",
-                                dataType: "jsonp",
-                                timeout: 5000
-                            },
-                            parameterMap: function (options, operation) {
-                                if (operation !== "read") {
-                                    return { models: kendo.stringify(options.models || [options]) };
-                                }
-                            }
-                        },
-                        schema: {
-                            model: {
-                                id: "id",
-                                fields: {
-                                    id: { from: "ID", type: "number" },
-                                    orderId: { from: "OrderID", type: "number", validation: { required: true } },
-                                    parentId: { from: "ParentID", type: "number", defaultValue: null, nullable: true, validation: { required: true } },
-                                    start: { from: "Start", type: "date" },
-                                    end: { from: "End", type: "date" },
-                                    title: { from: "Title", defaultValue: "", type: "string" },
-                                    percentComplete: { from: "PercentComplete", type: "number" },
-                                    summary: { from: "Summary", type: "boolean" },
-                                    expanded: { from: "Expanded", type: "boolean", defaultValue: true }
-                                }
-                            }
-                        },
-                        error: function (ev) {
-                            ev.sender.cancelChanges();
-                            kendo.alert("Task was not Created, Updated or Destroyed properly!</br></br>" +
-                                "If you are using this service for local demo or in dojo consider <a href='https://github.com/telerik/kendo-ui-demos-service/tree/master/demos-and-odata-v3'>downloading and running the service locally</a>.</br>" +
-                                "And make sure to set the <a href='https://github.com/telerik/kendo-ui-demos-service/blob/master/demos-and-odata-v3/KendoCRUDService/Models/Gantt/GanttTaskRepository.cs#L12'>UpdateDatabase</a> flag to true.");
-                        }
-                    });
+                objOptions.serviceRoot = "https://demos.telerik.com/kendo-ui/service";
 
-                    var dependenciesDataSource = new kendo.data.GanttDependencyDataSource({
-                        transport: {
-                            read: {
-                                url: serviceRoot + "/GanttDependencies",
-                                dataType: "jsonp"
-                            },
-                            update: {
-                                url: serviceRoot + "/GanttDependencies/Update",
-                                dataType: "jsonp"
-                            },
-                            destroy: {
-                                url: serviceRoot + "/GanttDependencies/Destroy",
-                                dataType: "jsonp"
-                            },
-                            create: {
-                                url: serviceRoot + "/GanttDependencies/Create",
-                                dataType: "jsonp"
-                            },
-                            parameterMap: function (options, operation) {
-                                if (operation !== "read") {
-                                    return { models: kendo.stringify(options.models || [options]) };
-                                }
-                            }
+                var tasksDataSource = new kendo.data.GanttDataSource({
+                    transport: {
+                        read: {
+                            url: objOptions.serviceRoot + "/GanttTasks",
+                            dataType: "jsonp"
                         },
-                        schema: {
-                            model: {
-                                id: "id",
-                                fields: {
-                                    id: { from: "ID", type: "number" },
-                                    predecessorId: { from: "PredecessorID", type: "number" },
-                                    successorId: { from: "SuccessorID", type: "number" },
-                                    type: { from: "Type", type: "number" }
-                                }
+                        update: {
+                            url: objOptions.serviceRoot + "/GanttTasks/Update",
+                            dataType: "jsonp",
+                            timeout: 5000
+                        },
+                        destroy: {
+                            url: objOptions.serviceRoot + "/GanttTasks/Destroy",
+                            dataType: "jsonp",
+                            timeout: 5000
+                        },
+                        create: {
+                            url: objOptions.serviceRoot + "/GanttTasks/Create",
+                            dataType: "jsonp",
+                            timeout: 5000
+                        },
+                        parameterMap: function (options, operation) {
+                            if (operation !== "read") {
+                                return { models: kendo.stringify(options.models || [options]) };
                             }
                         }
-                    });
+                    },
+                    schema: {
+                        model: {
+                            id: "id",
+                            fields: {
+                                id: { from: "ID", type: "number" },
+                                orderId: { from: "OrderID", type: "number", validation: { required: true } },
+                                parentId: { from: "ParentID", type: "number", defaultValue: null, nullable: true, validation: { required: true } },
+                                start: { from: "Start", type: "date" },
+                                end: { from: "End", type: "date" },
+                                title: { from: "Title", defaultValue: "", type: "string" },
+                                percentComplete: { from: "PercentComplete", type: "number" },
+                                summary: { from: "Summary", type: "boolean" },
+                                expanded: { from: "Expanded", type: "boolean", defaultValue: true }
+                            }
+                        }
+                    },
+                    error: function (ev) {
+                        ev.sender.cancelChanges();
+                        kendo.alert("Task was not Created, Updated or Destroyed properly!</br></br>" +
+                            "If you are using this service for local demo or in dojo consider <a href='https://github.com/telerik/kendo-ui-demos-service/tree/master/demos-and-odata-v3'>downloading and running the service locally</a>.</br>" +
+                            "And make sure to set the <a href='https://github.com/telerik/kendo-ui-demos-service/blob/master/demos-and-odata-v3/KendoCRUDService/Models/Gantt/GanttTaskRepository.cs#L12'>UpdateDatabase</a> flag to true.");
+                    }
+                });
 
-                    objThis.element.find('#divReport').kendoGantt({
-                        dataSource: tasksDataSource,
-                        dependencies: dependenciesDataSource,
-                        resources: {
-                            field: "resources",
-                            dataColorField: "Color",
-                            dataTextField: "Name",
-                            dataSource: {
-                                transport: {
-                                    read: {
-                                        url: serviceRoot + "/GanttResources",
-                                        dataType: "jsonp"
-                                    }
-                                },
-                                schema: {
-                                    model: {
-                                        id: "id",
-                                        fields: {
-                                            id: { from: "ID", type: "number" }
-                                        }
+                var dependenciesDataSource = new kendo.data.GanttDependencyDataSource({
+                    transport: {
+                        read: {
+                            url: objOptions.serviceRoot + "/GanttDependencies",
+                            dataType: "jsonp"
+                        },
+                        update: {
+                            url: objOptions.serviceRoot + "/GanttDependencies/Update",
+                            dataType: "jsonp"
+                        },
+                        destroy: {
+                            url: objOptions.serviceRoot + "/GanttDependencies/Destroy",
+                            dataType: "jsonp"
+                        },
+                        create: {
+                            url: objOptions.serviceRoot + "/GanttDependencies/Create",
+                            dataType: "jsonp"
+                        },
+                        parameterMap: function (options, operation) {
+                            if (operation !== "read") {
+                                return { models: kendo.stringify(options.models || [options]) };
+                            }
+                        }
+                    },
+                    schema: {
+                        model: {
+                            id: "id",
+                            fields: {
+                                id: { from: "ID", type: "number" },
+                                predecessorId: { from: "PredecessorID", type: "number" },
+                                successorId: { from: "SuccessorID", type: "number" },
+                                type: { from: "Type", type: "number" }
+                            }
+                        }
+                    }
+                });
+
+                objThis.element.find('#divReport').kendoGantt({
+                    dataSource: tasksDataSource,
+                    dependencies: dependenciesDataSource,
+                    resources: {
+                        field: "resources",
+                        dataColorField: "Color",
+                        dataTextField: "Name",
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: objOptions.serviceRoot + "/GanttResources",
+                                    dataType: "jsonp"
+                                }
+                            },
+                            schema: {
+                                model: {
+                                    id: "id",
+                                    fields: {
+                                        id: { from: "ID", type: "number" }
                                     }
                                 }
                             }
-                        },
-                        assignments: {
-                            dataTaskIdField: "TaskID",
-                            dataResourceIdField: "ResourceID",
-                            dataValueField: "Units",
-                            dataSource: {
-                                transport: {
-                                    read: {
-                                        url: serviceRoot + "/GanttResourceAssignments",
-                                        dataType: "jsonp"
-                                    },
-                                    update: {
-                                        url: serviceRoot + "/GanttResourceAssignments/Update",
-                                        dataType: "jsonp"
-                                    },
-                                    destroy: {
-                                        url: serviceRoot + "/GanttResourceAssignments/Destroy",
-                                        dataType: "jsonp"
-                                    },
-                                    create: {
-                                        url: serviceRoot + "/GanttResourceAssignments/Create",
-                                        dataType: "jsonp"
-                                    },
-                                    parameterMap: function (options, operation) {
-                                        if (operation !== "read") {
-                                            return { models: kendo.stringify(options.models || [options]) };
-                                        }
-                                    }
+                        }
+                    },
+                    assignments: {
+                        dataTaskIdField: "TaskID",
+                        dataResourceIdField: "ResourceID",
+                        dataValueField: "Units",
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: objOptions.serviceRoot + "/GanttResourceAssignments",
+                                    dataType: "jsonp"
                                 },
-                                schema: {
-                                    model: {
-                                        id: "ID",
-                                        fields: {
-                                            ID: { type: "number" },
-                                            ResourceID: { type: "number" },
-                                            Units: { type: "number" },
-                                            TaskID: { type: "number" }
-                                        }
+                                update: {
+                                    url: objOptions.serviceRoot + "/GanttResourceAssignments/Update",
+                                    dataType: "jsonp"
+                                },
+                                destroy: {
+                                    url: objOptions.serviceRoot + "/GanttResourceAssignments/Destroy",
+                                    dataType: "jsonp"
+                                },
+                                create: {
+                                    url: objOptions. serviceRoot + "/GanttResourceAssignments/Create",
+                                    dataType: "jsonp"
+                                },
+                                parameterMap: function (options, operation) {
+                                    if (operation !== "read") {
+                                        return { models: kendo.stringify(options.models || [options]) };
+                                    }
+                                }
+                            },
+                            schema: {
+                                model: {
+                                    id: "ID",
+                                    fields: {
+                                        ID: { type: "number" },
+                                        ResourceID: { type: "number" },
+                                        Units: { type: "number" },
+                                        TaskID: { type: "number" }
                                     }
                                 }
                             }
-                        },
-                        views: [
-                            "day",
-                            { type: "week", selected: true },
-                            "month"
-                        ],
-                        columns: [
-                            { field: "title", title: "Task", editable: true, width: 255 },
-                            { field: "start", title: "Actual Start Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
-                            { field: "end", title: "Actual End Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
-                            { field: "percentComplete", title: "% Complete", type: "number", editable: true, width: 100 }
-                        ],
-                        toolbar: ["append", "pdf"],
-                        height: 700,
-                        listWidth: "50%",
-                        showWorkHours: false,
-                        showWorkDays: false,
-                        snap: false
-                    }).data("kendoGantt");
+                        }
+                    },
+                    views: [
+                        "day",
+                        { type: "week", selected: true },
+                        "month"
+                    ],
+                    columns: [
+                        { field: "title", title: "Task", editable: true, width: 255 },
+                        { field: "start", title: "Actual Start Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
+                        { field: "end", title: "Actual End Date", format: "{0:M/d/yyyy}", editable: true, width: 130 },
+                        { field: "percentComplete", title: "% Complete", type: "number", editable: true, width: 100 }
+                    ],
+                    toolbar: ["append", "pdf"],
+                    height: 700,
+                    listWidth: "50%",
+                    showWorkHours: false,
+                    showWorkDays: false,
+                    snap: false
+                }).data("kendoGantt");
 
-                    $(document).bind("kendo:skinChange", function () {
-                        gantt.refresh();
-                    });
+                $(document).bind("kendo:skinChange", function () {
+                    gantt.refresh();
                 });
 
             }

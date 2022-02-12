@@ -3,7 +3,7 @@
 
     $(':hh-calendar').calendar('option')
 
-    This widget will be used to display a table of properties
+    This widget will be used to display a calendar
 */
 
 (function ($) {
@@ -16,156 +16,46 @@
         options: {
             schedulerTasks: [
                 {
-                    id: 1,
-                    title: "AP Physics",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/physics.png",
-                    start: new Date("2020/10/5 8:00"),
-                    end: new Date("2020/10/5 9:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=MO;WKST=SU",
-                    attendee: 1
+                   "TaskID":1,
+                   "OwnerID":1,
+                   "Title":"Fix Refrigerator",
+                   "Description":"",
+                   "StartTimezone":null,
+                   "Start":"\/Date(1641160800000)\/",
+                   "End":"\/Date(1641160800000)\/",
+                   "EndTimezone":null,
+                   "RecurrenceRule":null,
+                   "RecurrenceID":null,
+                   "RecurrenceException":null,
+                   "IsAllDay":true
                 },
                 {
-                    id: 2,
-                    title: "History",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/history.png",
-                    start: new Date("2020/10/5 9:00"),
-                    end: new Date("2020/10/5 10:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=9;BYDAY=MO,WE,TH,FR;WKST=SU",
-                    attendee: 1
+                   "TaskID":3,
+                   "OwnerID":3,
+                   "Title":"Fix Stove",
+                   "Description":"",
+                   "StartTimezone":null,
+                   "Start":"2022-01-20T09:00:00",
+                   "End":"2022-01-20T10:00:00",
+                   "EndTimezone":null,
+                   "RecurrenceRule":null,
+                   "RecurrenceID":null,
+                   "RecurrenceException":null,
+                   "IsAllDay":true
                 },
                 {
-                    id: 3,
-                    title: "Art",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/art.png",
-                    start: new Date("2020/10/5 9:00"),
-                    end: new Date("2020/10/5 10:00"),
-                    attendee: 2
-                },
-                {
-                    id: 4,
-                    title: "Spanish",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/spanish.png",
-                    start: new Date("2020/10/5 10:00"),
-                    end: new Date("2020/10/5 11:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=MO,TH;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 5,
-                    title: "Home Ec",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/home-ec.png",
-                    start: new Date("2020/10/5 10:00"),
-                    end: new Date("2020/10/5 11:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=MO,TH;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 6,
-                    title: "AP Math",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/math.png",
-                    start: new Date("2020/10/5 11:00"),
-                    end: new Date("2020/10/5 12:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=MO,TH;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 7,
-                    title: "AP Econ",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/econ.png",
-                    start: new Date("2020/10/5 11:00"),
-                    end: new Date("2020/10/5 12:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=MO,TH;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 8,
-                    title: "Photography Club Meeting",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/photography.png",
-                    start: new Date("2020/10/5 14:00"),
-                    end: new Date("2020/10/5 15:30"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=MO;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 9,
-                    title: "Tennis Practice",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/tennis.png",
-                    start: new Date("2020/10/5 15:30"),
-                    end: new Date("2020/10/5 16:30"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=MO;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 10,
-                    title: "French",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/french.png",
-                    start: new Date("2020/10/6 8:00"),
-                    end: new Date("2020/10/6 9:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=TU;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 11,
-                    title: "Gym",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/gym.png",
-                    start: new Date("2020/10/6 9:00"),
-                    end: new Date("2020/10/6 10:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=TU;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 12,
-                    title: "English",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/english.png",
-                    start: new Date("2020/10/6 9:00"),
-                    end: new Date("2020/10/6 10:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=TU;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 13,
-                    title: "English",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/english.png",
-                    start: new Date("2020/10/6 10:00"),
-                    end: new Date("2020/10/6 11:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=12;BYDAY=TU,FR;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 14,
-                    title: "History",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/history.png",
-                    start: new Date("2020/10/6 11:00"),
-                    end: new Date("2020/10/6 12:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=TU;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 15,
-                    title: "Gym",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/gym.png",
-                    start: new Date("2020/10/6 11:00"),
-                    end: new Date("2020/10/6 12:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=TU;WKST=SU",
-                    attendee: 2
-                },
-                {
-                    id: 16,
-                    title: "English",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/english.png",
-                    start: new Date("2020/10/6 8:00"),
-                    end: new Date("2020/10/6 9:00"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=10;BYDAY=WE;WKST=SU",
-                    attendee: 1
-                },
-                {
-                    id: 17,
-                    title: "School Choir Practice",
-                    image: "https://demos.telerik.com/kendo-ui/content/web/scheduler/choir.png",
-                    start: new Date("2020/10/6 14:30"),
-                    end: new Date("2020/10/6 15:30"),
-                    recurrenceRule: "FREQ=WEEKLY;COUNT=5;BYDAY=TU;WKST=SU",
-                    attendee: 2
+                   "TaskID":2,
+                   "OwnerID":2,
+                   "Title":"General Maintenance",
+                   "Description":"",
+                   "StartTimezone":null,
+                   "Start":"\/Date(1370284200000)\/",
+                   "End":"\/Date(1370289600000)\/",
+                   "EndTimezone":null,
+                   "RecurrenceRule":"FREQ=WEEKLY;BYDAY=MO,WE,FR",
+                   "RecurrenceID":null,
+                   "RecurrenceException":null,
+                   "IsAllDay":false
                 }
             ],
 
@@ -282,7 +172,8 @@
                         batch: true,
                         transport: {
                             read: function (e) {
-                                e.success(tasks);
+                                // e.success(tasks);
+                                e.success(objOptions.schedulerTasks);
                             },
                             update: {
                                 url: "https://demos.telerik.com/kendo-ui/service/tasks/update",

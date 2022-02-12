@@ -3,7 +3,7 @@
 
     $(':hh-propertyDetails').propertyDetails('option')
 
-    This widget will be used to display a table of properties
+    This widget will be used to display property details
 */
 
 (function ($) {
