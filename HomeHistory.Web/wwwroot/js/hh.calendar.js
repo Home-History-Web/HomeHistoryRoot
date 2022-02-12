@@ -20,10 +20,10 @@
                    "OwnerID":1,
                    "Title":"Fix Refrigerator",
                    "Description":"",
-                   "StartTimezone":null,
+                   "StartTimezone":"Etc/UTC",
                    "Start":"\/Date(1641160800000)\/",
                    "End":"\/Date(1641160800000)\/",
-                   "EndTimezone":null,
+                   "EndTimezone":"Etc/UTC",
                    "RecurrenceRule":null,
                    "RecurrenceID":null,
                    "RecurrenceException":null,
@@ -34,10 +34,10 @@
                    "OwnerID":3,
                    "Title":"Fix Stove",
                    "Description":"",
-                   "StartTimezone":null,
+                   "StartTimezone":"Etc/UTC",
                    "Start":"2022-01-20T09:00:00",
                    "End":"2022-01-20T10:00:00",
-                   "EndTimezone":null,
+                   "EndTimezone":"Etc/UTC",
                    "RecurrenceRule":null,
                    "RecurrenceID":null,
                    "RecurrenceException":null,
@@ -48,10 +48,10 @@
                    "OwnerID":2,
                    "Title":"General Maintenance",
                    "Description":"",
-                   "StartTimezone":null,
+                   "StartTimezone":"Etc/UTC",
                    "Start":"\/Date(1370284200000)\/",
                    "End":"\/Date(1370289600000)\/",
-                   "EndTimezone":null,
+                   "EndTimezone":"Etc/UTC",
                    "RecurrenceRule":"FREQ=WEEKLY;BYDAY=MO,WE,FR",
                    "RecurrenceID":null,
                    "RecurrenceException":null,
@@ -155,9 +155,11 @@
 
                 var objCalendar = objThis.element.find('#hhCalendar');
 
+                // var arryTasks = $.extend({}, objOptions.schedulerTasks);
+
                 $('#hhCalendar').kendoScheduler({
-                    date: new Date("2022/1/1"),
-                    startTime: new Date("2022/1/2 07:00 AM"),
+                    date: new Date("2022/01/01"),
+                    startTime: new Date("2022/01/02 07:00 AM"),
                     height: 600,
                     views: [
                         "day",
@@ -172,8 +174,8 @@
                         batch: true,
                         transport: {
                             read: function (e) {
-                                // e.success(tasks);
                                 e.success(objOptions.schedulerTasks);
+                                // e.success(arryTasks);
                             },
                             update: {
                                 url: "https://demos.telerik.com/kendo-ui/service/tasks/update",
@@ -201,12 +203,12 @@
                                     title: { from: "Title", defaultValue: "No title", validation: { required: true } },
                                     start: { type: "date", from: "Start" },
                                     end: { type: "date", from: "End" },
-                                    startTimezone: { from: "StartTimezone" },
-                                    endTimezone: { from: "EndTimezone" },
+                                    // startTimezone: { from: "StartTimezone" },
+                                    // endTimezone: { from: "EndTimezone" },
                                     description: { from: "Description" },
                                     recurrenceId: { from: "RecurrenceID" },
                                     recurrenceRule: { from: "RecurrenceRule" },
-                                    recurrenceException: { from: "RecurrenceException" },
+                                    // recurrenceException: { from: "RecurrenceException" },
                                     ownerId: { from: "OwnerID", defaultValue: 1 },
                                     isAllDay: { type: "boolean", from: "IsAllDay" }
                                 }
