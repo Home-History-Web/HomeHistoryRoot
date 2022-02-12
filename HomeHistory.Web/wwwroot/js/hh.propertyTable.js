@@ -137,7 +137,7 @@
                     filterable: true,
                     selectable: "row",
                     dataBound: $.noop(),
-                    toolbar: ["excel", "pdf", "search"],
+                    toolbar: ["pdf", "search"],
                     columns: [
                         { field: "formattedAddress", title: "Address" },
                         {
