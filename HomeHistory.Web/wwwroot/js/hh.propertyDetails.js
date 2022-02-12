@@ -78,7 +78,26 @@
                 objOptions = objThis.options;
 
             $.debug("Started hh.propertyDetails.bindEvents");
-
+            
+            objThis.element.on('click', '.detail-overview', function (evt) {
+                // Load the Overview
+                objThis.loadOverview();
+            }).on('click', '.detail-schedule', function (evt) {
+                // Load the Schedule
+                objThis.loadSchedule();
+            }).on('click', '.detail-rent', function (evt) {
+                // Load the Rent
+                objThis.loadRent();
+            }).on('click', '.detail-work-orders', function (evt) {
+                // Load the Overview
+                objThis.loadWorkOrders();
+            }).on('click', '.detail-receipts', function (evt) {
+                // Load the Overview
+                objThis.loadReceipts();
+            }).on('click', '.detail-tenant-portal', function (evt) {
+                // Load the Overview
+                objThis.loadTenantPortal();
+            });
         },
 
 
@@ -103,19 +122,104 @@
             });
         },
 
-        loadProperty: function() {
+        loadOverview: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
             try {
-                $.debug('Started hh.propertyDetails.loadProperty');
+                $.debug('Started hh.propertyDetails.loadOverview');
                 
                 objThis.element
-                .find('.hh-property-details');
+                .find('#divPropertyInfo').text("Overview");
 
             }
             catch (ex) {
-                $.debug('error', 'Error in hh.propertyDetails.loadProperty', ex);
+                $.debug('error', 'Error in hh.propertyDetails.loadOverview', ex);
+            }
+
+        },
+
+        loadSchedule: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadSchedule');
+                
+                objThis.element
+                .find('#divPropertyInfo').text("Schedule");
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadSchedule', ex);
+            }
+
+        },
+
+        loadRent: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadRent');
+                
+                objThis.element
+                .find('#divPropertyInfo').text("Rent");
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadRent', ex);
+            }
+
+        },
+
+        loadWorkOrders: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadWorkOrders');
+                
+                objThis.element
+                .find('#divPropertyInfo').text("Work Orders");
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadWorkOrders', ex);
+            }
+
+        },
+
+        loadReceipts: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadReceipts');
+                
+                objThis.element
+                .find('#divPropertyInfo').text("Receipts");
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadReceipts', ex);
+            }
+
+        },
+
+        loadTenantPortal: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadTenantPortal');
+                
+                objThis.element
+                .find('#divPropertyInfo').text("Tenant Portal");
+
+            }
+            catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadTenantPortal', ex);
             }
 
         },
