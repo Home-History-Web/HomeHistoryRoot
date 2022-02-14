@@ -25,6 +25,8 @@ $(document).ready(function () {
             $('#divMainContent').calendar('destroy');
         } else if ($('#divMainContent').is(':hh-reports')) {
             $('#divMainContent').reports('destroy');
+        } else if ($('#divMainContent').is(':hh-contacts')) {
+            $('#divMainContent').contacts('destroy');
         }
 
         switch (objText.toLowerCase()) {
@@ -42,7 +44,7 @@ $(document).ready(function () {
 
                 break;
             case "contacts":
-                // $('#divMainContent').contacts();
+                $('#divMainContent').contacts();
 
                 break;
             case "work orders":
