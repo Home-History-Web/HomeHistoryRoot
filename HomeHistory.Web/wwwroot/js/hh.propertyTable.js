@@ -6,7 +6,7 @@
     This widget will be used to display a table of properties
 */
 
-(function ($) {
+(function($) {
     $.widget("hh.propertyTable", {
 
         /*
@@ -23,7 +23,7 @@
         },
 
 
-        _create: function () {
+        _create: function() {
             var objThis = this,
                 objOptions = objThis.options,
                 markupPromise,
@@ -47,25 +47,25 @@
                 text: "Processing..."
             });
 
-            markupPromise = objThis.injectMarkup().then(function () {
+            markupPromise = objThis.injectMarkup().then(function() {
                 objThis.bindEvents();
             });
 
-            fetchDataPromise = $.hh.data.getProperties({}).then(function (result) {
+            fetchDataPromise = $.hh.data.getProperties({}).then(function(result) {
                 objOptions.properties = result;
             });
 
             objOptions.createPromise = $.when(markupPromise, fetchDataPromise)
-                .always(function () {
+                .always(function() {
                     $.hh.hideProcessing();
                 });
         },
 
-        injectMarkup: function () {
+        injectMarkup: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
-            return $.get('/ui/propertyTable.htm', function (markup) {
+            return $.get('/ui/propertyTable.htm', function(markup) {
                 objThis.element.append(markup);
             });
         },
@@ -73,13 +73,13 @@
         /*
             Set up any event handlers and child widgets
         */
-        bindEvents: function () {
+        bindEvents: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
             $.debug("Started hh.propertyTable.bindEvents");
 
-            objThis.element.on('click', '.btn-add-property', function (evt) {
+            objThis.element.on('click', '.btn-add-property', function(evt) {
                 // Load the property lookup widget
                 objThis.destroy();
 
@@ -90,13 +90,13 @@
         },
 
 
-        _init: function () {
+        _init: function() {
             $.debug("Started hh.propertyTable._init");
 
             var objThis = this,
                 objOptions = objThis.options;
 
-            objOptions.createPromise.done(function () {
+            objOptions.createPromise.done(function() {
                 objThis.loadProperties();
 
 
@@ -111,7 +111,7 @@
             });
         },
 
-        loadProperties: function () {
+        loadProperties: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -142,7 +142,8 @@
                         { field: "formattedAddress", title: "Address" },
                         {
                             command: {
-                                text: "Delete", click: function (e) {
+                                text: "Delete",
+                                click: function(e) {
                                     // prevent page scroll position change
                                     e.preventDefault();
                                     // e.target is the DOM element representing the button
@@ -161,10 +162,12 @@
                                         .data("kendoGrid")
                                         .removeRow(tr);
                                 }
-                            }, title: "Actions", width: "180px"
+                            },
+                            title: "Actions",
+                            width: "180px"
                         }
                     ],
-                    change: function (e) {
+                    change: function(e) {
                         var grid = objGrid.data("kendoGrid");
 
                         if (grid.select()) {
@@ -179,14 +182,13 @@
                         }
                     }
                 });
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyTable.loadProperties', ex);
             }
 
         },
 
-        deleteProperty: function (options) {
+        deleteProperty: function(options) {
 
             var defaults = {},
                 objThis = this,
@@ -197,7 +199,7 @@
 
                 $.hh.data.deleteProperty({
                     id: objOptions.id
-                }).then(function (result) {
+                }).then(function(result) {
                     new PNotify({
                         title: 'Success',
                         text: 'Property Removed',
@@ -205,13 +207,12 @@
                         delay: 2000
                     });
                 });
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyTable.deleteProperty', ex);
             }
         },
 
-        destroy: function () {
+        destroy: function() {
             try {
                 $.debug('Started hh.propertyTable.destroy');
 
@@ -220,8 +221,7 @@
                     .empty();
 
                 this._super();
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyTable.destroy', ex);
             }
         }

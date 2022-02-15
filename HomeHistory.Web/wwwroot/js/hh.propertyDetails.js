@@ -6,7 +6,7 @@
     This widget will be used to display property details
 */
 
-(function ($) {
+(function($) {
     $.widget("hh.propertyDetails", {
 
         /*
@@ -23,7 +23,7 @@
         },
 
 
-        _create: function () {
+        _create: function() {
             var objThis = this,
                 objOptions = objThis.options,
                 markupPromise,
@@ -47,7 +47,7 @@
                 text: "Processing..."
             });
 
-            markupPromise = objThis.injectMarkup().then(function () {
+            markupPromise = objThis.injectMarkup().then(function() {
                 objThis.bindEvents();
             });
 
@@ -56,16 +56,16 @@
             // });
 
             objOptions.createPromise = $.when(markupPromise)
-                .always(function () {
+                .always(function() {
                     $.hh.hideProcessing();
                 });
         },
 
-        injectMarkup: function () {
+        injectMarkup: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
-            return $.get('/ui/propertyDetails.htm', function (markup) {
+            return $.get('/ui/propertyDetails.htm', function(markup) {
                 objThis.element.append(markup);
 
                 // Grab the hidden markup
@@ -75,47 +75,51 @@
                 objOptions.$propWorkOrders = $('#propWorkOrders').removeAttr('id');
                 objOptions.$propReceipts = $('#propReceipts').removeAttr('id');
                 objOptions.$propTenantPortal = $('#propTenantPortal').removeAttr('id');
+                objOptions.$propHistory = $('#propHistory').removeAttr('id');
             });
         },
 
         /*
             Set up any event handlers and child widgets
         */
-        bindEvents: function () {
+        bindEvents: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
             $.debug("Started hh.propertyDetails.bindEvents");
-            
-            objThis.element.on('click', '.detail-overview', function (evt) {
+
+            objThis.element.on('click', '.detail-overview', function(evt) {
                 // Load the Overview
                 objThis.loadOverview();
-            }).on('click', '.detail-calendar', function (evt) {
+            }).on('click', '.detail-calendar', function(evt) {
                 // Load the Calendar
                 objThis.loadCalendar();
-            }).on('click', '.detail-rent', function (evt) {
+            }).on('click', '.detail-rent', function(evt) {
                 // Load the Rent
                 objThis.loadRent();
-            }).on('click', '.detail-work-orders', function (evt) {
-                // Load the Overview
+            }).on('click', '.detail-work-orders', function(evt) {
+                // Load the Work Orders
                 objThis.loadWorkOrders();
-            }).on('click', '.detail-receipts', function (evt) {
-                // Load the Overview
+            }).on('click', '.detail-receipts', function(evt) {
+                // Load the Receipts
                 objThis.loadReceipts();
-            }).on('click', '.detail-tenant-portal', function (evt) {
-                // Load the Overview
+            }).on('click', '.detail-tenant-portal', function(evt) {
+                // Load the Tenant Portal
                 objThis.loadTenantPortal();
+            }).on('click', '.detail-history', function(evt) {
+                // Load the History
+                objThis.loadHistory();
             });
         },
 
 
-        _init: function () {
+        _init: function() {
             $.debug("Started hh.propertyDetails._init");
 
             var objThis = this,
                 objOptions = objThis.options;
 
-            objOptions.createPromise.done(function () {
+            objOptions.createPromise.done(function() {
                 objThis.loadOverview();
 
 
@@ -136,17 +140,20 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadOverview');
-                
+
                 var elemOverview = objOptions.$propOverview.clone();
 
                 elemOverview.find('.formatted-address').text(objOptions.property.formattedAddress);
 
-                objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(elemOverview);
+                elemOverview.find('.line-1').text(objOptions.property.line1);
+                elemOverview.find('.line-2').text(objOptions.property.line2);
+                elemOverview.find('.city-state-zip').text(objOptions.property.city + ', ' + objOptions.property.state + ', ' + objOptions.property.zip);
 
-            }
-            catch (ex) {
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(elemOverview);
+
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadOverview', ex);
             }
 
@@ -158,13 +165,13 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadCalendar');
-                
+
                 var elemOverview = objOptions.$propCalendar.clone();
 
                 objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(elemOverview);
-                                
+                    .find('#divPropertyInfo').empty()
+                    .append(elemOverview);
+
                 $('#divPropCalendar').kendoScheduler({
                     date: new Date("2022/01/01"),
                     startTime: new Date("2022/01/02 07:00 AM"),
@@ -175,41 +182,40 @@
                         { type: "week" },
                         { type: "month" },
                         { type: "agenda", selected: true },
-                        { type: "timeline", eventHeight: 50}
+                        { type: "timeline", eventHeight: 50 }
                     ],
                     timezone: "Etc/UTC",
                     dataSource: {
                         batch: true,
                         transport: {
-                            read: function (e) {
-                                e.success([
-                                    {
-                                       "TaskID":1,
-                                       "OwnerID":1,
-                                       "Title":"Fix Refrigerator",
-                                       "Description":"",
-                                       "StartTimezone":"Etc/UTC",
-                                       "Start":"\/Date(1641160800000)\/",
-                                       "End":"\/Date(1641160800000)\/",
-                                       "EndTimezone":"Etc/UTC",
-                                       "RecurrenceRule":null,
-                                       "RecurrenceID":null,
-                                       "RecurrenceException":null,
-                                       "IsAllDay":true
+                            read: function(e) {
+                                e.success([{
+                                        "TaskID": 1,
+                                        "OwnerID": 1,
+                                        "Title": "Fix Refrigerator",
+                                        "Description": "",
+                                        "StartTimezone": "Etc/UTC",
+                                        "Start": "\/Date(1641160800000)\/",
+                                        "End": "\/Date(1641160800000)\/",
+                                        "EndTimezone": "Etc/UTC",
+                                        "RecurrenceRule": null,
+                                        "RecurrenceID": null,
+                                        "RecurrenceException": null,
+                                        "IsAllDay": true
                                     },
                                     {
-                                       "TaskID":3,
-                                       "OwnerID":3,
-                                       "Title":"Fix Stove",
-                                       "Description":"",
-                                       "StartTimezone":"Etc/UTC",
-                                       "Start":"2022-01-20T09:00:00",
-                                       "End":"2022-01-20T10:00:00",
-                                       "EndTimezone":"Etc/UTC",
-                                       "RecurrenceRule":null,
-                                       "RecurrenceID":null,
-                                       "RecurrenceException":null,
-                                       "IsAllDay":true
+                                        "TaskID": 3,
+                                        "OwnerID": 3,
+                                        "Title": "Fix Stove",
+                                        "Description": "",
+                                        "StartTimezone": "Etc/UTC",
+                                        "Start": "2022-01-20T09:00:00",
+                                        "End": "2022-01-20T10:00:00",
+                                        "EndTimezone": "Etc/UTC",
+                                        "RecurrenceRule": null,
+                                        "RecurrenceID": null,
+                                        "RecurrenceException": null,
+                                        "IsAllDay": true
                                     }
                                 ]);
                                 // e.success(arryTasks);
@@ -228,7 +234,7 @@
                             },
                             parameterMap: function(options, operation) {
                                 if (operation !== "read" && options.models) {
-                                    return {models: kendo.stringify(options.models)};
+                                    return { models: kendo.stringify(options.models) };
                                 }
                             }
                         },
@@ -260,21 +266,18 @@
                             ]
                         }
                     },
-                    resources: [
-                        {
-                            field: "ownerId",
-                            title: "Owner",
-                            dataSource: [
-                                { text: "Tim", value: 1, color: "#f8a398" },
-                                { text: "Dave", value: 2, color: "#51a0ed" },
-                                { text: "Landon", value: 3, color: "#56ca85" }
-                            ]
-                        }
-                    ]
+                    resources: [{
+                        field: "ownerId",
+                        title: "Owner",
+                        dataSource: [
+                            { text: "Tim", value: 1, color: "#f8a398" },
+                            { text: "Dave", value: 2, color: "#51a0ed" },
+                            { text: "Landon", value: 3, color: "#56ca85" }
+                        ]
+                    }]
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadCalendar', ex);
             }
 
@@ -286,13 +289,12 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadRent');
-                
-                objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(objOptions.$propRent);
 
-            }
-            catch (ex) {
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(objOptions.$propRent);
+
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadRent', ex);
             }
 
@@ -304,13 +306,12 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadWorkOrders');
-                
-                objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(objOptions.$propWorkOrders);
 
-            }
-            catch (ex) {
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(objOptions.$propWorkOrders);
+
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadWorkOrders', ex);
             }
 
@@ -322,13 +323,12 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadReceipts');
-                
-                objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(objOptions.$propReceipts);
 
-            }
-            catch (ex) {
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(objOptions.$propReceipts);
+
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadReceipts', ex);
             }
 
@@ -340,19 +340,35 @@
 
             try {
                 $.debug('Started hh.propertyDetails.loadTenantPortal');
-                
-                objThis.element
-                .find('#divPropertyInfo').empty()
-                .append(objOptions.$propTenantPortal);
 
-            }
-            catch (ex) {
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(objOptions.$propTenantPortal);
+
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.loadTenantPortal', ex);
             }
 
         },
 
-        destroy: function () {
+        loadHistory: function() {
+            var objThis = this,
+                objOptions = objThis.options;
+
+            try {
+                $.debug('Started hh.propertyDetails.loadHistory');
+
+                objThis.element
+                    .find('#divPropertyInfo').empty()
+                    .append(objOptions.$propHistory);
+
+            } catch (ex) {
+                $.debug('error', 'Error in hh.propertyDetails.loadHistory', ex);
+            }
+
+        },
+
+        destroy: function() {
             try {
                 $.debug('Started hh.propertyDetails.destroy');
 
@@ -361,8 +377,7 @@
                     .empty();
 
                 this._super();
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.propertyDetails.destroy', ex);
             }
         }

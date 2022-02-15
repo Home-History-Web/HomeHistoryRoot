@@ -1,14 +1,14 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $.hh.emailAddress = $.cookie('email').toLowerCase();
     $.hh.accessToken = $.cookie('accessToken');
 
     $('#divMainContent').propertyTable({});
 
-    $('#logout').on('click', function () {
+    $('#logout').on('click', function() {
         document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://localhost:7122/";
     });
 
-    $(".list-group-item").click(function () {
+    $(".list-group-item").click(function() {
         $(".list-group-item").removeClass('active');
 
         $(this).addClass('active');

@@ -8,7 +8,7 @@
     https://docs.telerik.com/kendo-ui/controls/charts/chart-types/overview
 */
 
-(function ($) {
+(function($) {
     $.widget("hh.reports", {
 
         /*
@@ -23,7 +23,7 @@
         },
 
 
-        _create: function () {
+        _create: function() {
             var objThis = this,
                 objOptions = objThis.options,
                 markupPromise,
@@ -47,21 +47,21 @@
                 text: "Processing..."
             });
 
-            markupPromise = objThis.injectMarkup().then(function () {
+            markupPromise = objThis.injectMarkup().then(function() {
                 objThis.bindEvents();
             });
 
             objOptions.createPromise = $.when(markupPromise)
-                .always(function () {
+                .always(function() {
                     $.hh.hideProcessing();
                 });
         },
 
-        injectMarkup: function () {
+        injectMarkup: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
-            return $.get('/ui/reports.htm', function (markup) {
+            return $.get('/ui/reports.htm', function(markup) {
                 objThis.element.append(markup);
             });
         },
@@ -69,36 +69,36 @@
         /*
             Set up any event handlers and child widgets
         */
-        bindEvents: function () {
+        bindEvents: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
             $.debug("Started hh.reports.bindEvents");
 
-            objThis.element.on('click', '.chart-bar', function (evt) {
+            objThis.element.on('click', '.chart-hh-bar', function(evt) {
                 objThis.loadBar();
-            }).on('click', '.chart-pie', function (evt) {
+            }).on('click', '.chart-hh-pie', function(evt) {
                 objThis.loadPie();
-            }).on('click', '.chart-line', function (evt) {
+            }).on('click', '.chart-hh-line', function(evt) {
                 objThis.loadLine();
-            }).on('click', '.chart-area', function (evt) {
+            }).on('click', '.chart-hh-area', function(evt) {
                 objThis.loadArea();
-            }).on('click', '.chart-gantt', function (evt) {
+            }).on('click', '.chart-hh-gantt', function(evt) {
                 objThis.loadGantt();
-            }).on('click', '.chart-scatter', function (evt) {
+            }).on('click', '.chart-hh-scatter', function(evt) {
                 objThis.loadScatter();
             });
 
         },
 
 
-        _init: function () {
+        _init: function() {
             $.debug("Started hh.reports._init");
 
             var objThis = this,
                 objOptions = objThis.options;
 
-            objOptions.createPromise.done(function () {
+            objOptions.createPromise.done(function() {
                 objThis.loadBar();
 
                 /* 
@@ -112,7 +112,7 @@
             });
         },
 
-        loadBar: function () {
+        loadBar: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -169,14 +169,13 @@
                     }
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadBar', ex);
             }
 
         },
 
-        loadArea: function () {
+        loadArea: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -212,14 +211,13 @@
                     }
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadArea', ex);
             }
 
         },
 
-        loadPie: function () {
+        loadPie: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -281,14 +279,13 @@
                     }
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadPie', ex);
             }
 
         },
 
-        loadLine: function () {
+        loadLine: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -349,14 +346,13 @@
                     }
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadLine', ex);
             }
 
         },
 
-        loadScatter: function () {
+        loadScatter: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -377,13 +373,34 @@
                     },
                     series: [{
                         name: "0.8C",
-                        data: [[10, 10], [15, 20], [20, 25], [32, 40], [43, 50], [55, 60], [60, 70], [70, 80], [90, 100]]
+                        data: [
+                            [10, 10],
+                            [15, 20],
+                            [20, 25],
+                            [32, 40],
+                            [43, 50],
+                            [55, 60],
+                            [60, 70],
+                            [70, 80],
+                            [90, 100]
+                        ]
                     }, {
                         name: "1.6C",
-                        data: [[10, 40], [17, 50], [18, 70], [35, 90], [47, 95], [60, 100]]
+                        data: [
+                            [10, 40],
+                            [17, 50],
+                            [18, 70],
+                            [35, 90],
+                            [47, 95],
+                            [60, 100]
+                        ]
                     }, {
                         name: "3.1C",
-                        data: [[10, 70], [13, 90], [25, 100]]
+                        data: [
+                            [10, 70],
+                            [13, 90],
+                            [25, 100]
+                        ]
                     }],
                     xAxis: {
                         max: 90,
@@ -405,14 +422,13 @@
                     }
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadScatter', ex);
             }
 
         },
 
-        loadGantt: function () {
+        loadGantt: function() {
             var objThis = this,
                 objOptions = objThis.options;
 
@@ -444,7 +460,7 @@
                             dataType: "jsonp",
                             timeout: 5000
                         },
-                        parameterMap: function (options, operation) {
+                        parameterMap: function(options, operation) {
                             if (operation !== "read") {
                                 return { models: kendo.stringify(options.models || [options]) };
                             }
@@ -466,7 +482,7 @@
                             }
                         }
                     },
-                    error: function (ev) {
+                    error: function(ev) {
                         ev.sender.cancelChanges();
                         kendo.alert("Task was not Created, Updated or Destroyed properly!</br></br>" +
                             "If you are using this service for local demo or in dojo consider <a href='https://github.com/telerik/kendo-ui-demos-service/tree/master/demos-and-odata-v3'>downloading and running the service locally</a>.</br>" +
@@ -492,7 +508,7 @@
                             url: objOptions.serviceRoot + "/GanttDependencies/Create",
                             dataType: "jsonp"
                         },
-                        parameterMap: function (options, operation) {
+                        parameterMap: function(options, operation) {
                             if (operation !== "read") {
                                 return { models: kendo.stringify(options.models || [options]) };
                             }
@@ -554,10 +570,10 @@
                                     dataType: "jsonp"
                                 },
                                 create: {
-                                    url: objOptions. serviceRoot + "/GanttResourceAssignments/Create",
+                                    url: objOptions.serviceRoot + "/GanttResourceAssignments/Create",
                                     dataType: "jsonp"
                                 },
-                                parameterMap: function (options, operation) {
+                                parameterMap: function(options, operation) {
                                     if (operation !== "read") {
                                         return { models: kendo.stringify(options.models || [options]) };
                                     }
@@ -595,18 +611,17 @@
                     snap: false
                 }).data("kendoGantt");
 
-                $(document).bind("kendo:skinChange", function () {
+                $(document).bind("kendo:skinChange", function() {
                     gantt.refresh();
                 });
 
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.loadGantt', ex);
             }
 
         },
 
-        destroy: function () {
+        destroy: function() {
             try {
                 $.debug('Started hh.reports.destroy');
 
@@ -615,8 +630,7 @@
                     .empty();
 
                 this._super();
-            }
-            catch (ex) {
+            } catch (ex) {
                 $.debug('error', 'Error in hh.reports.destroy', ex);
             }
         }
