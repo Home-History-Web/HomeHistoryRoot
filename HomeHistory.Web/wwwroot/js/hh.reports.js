@@ -123,7 +123,7 @@
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
-                        text: "Gross domestic product growth /GDP annual %/"
+                        text: "Revenue"
                     },
                     legend: {
                         position: "top"
@@ -132,16 +132,16 @@
                         type: "column"
                     },
                     series: [{
-                        name: "United States",
+                        name: "Single Family",
                         data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
                     }, {
-                        name: "England",
+                        name: "Townhome",
                         data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
                     }, {
-                        name: "Germany",
+                        name: "Apartment",
                         data: [0.010, -0.375, 1.161, 0.684, 3.7, 3.269, 1.083, -5.127, 3.690, 2.995]
                     }, {
-                        name: "World",
+                        name: "Condo",
                         data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
                     }],
                     valueAxis: {
@@ -186,7 +186,7 @@
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
-                        text: "Internet Users"
+                        text: "Work Orders"
                     },
                     legend: {
                         position: "bottom"
@@ -195,10 +195,10 @@
                         type: "area"
                     },
                     series: [{
-                        name: "World",
+                        name: "Condo",
                         data: [15.7, 16.7, 20, 23.5, 26.6]
                     }, {
-                        name: "United States",
+                        name: "Single Family",
                         data: [67.96, 68.93, 75, 74, 78]
                     }],
                     valueAxis: {
@@ -228,8 +228,8 @@
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
-                        position: "bottom",
-                        text: "Share of Internet Population Growth, 2007 - 2012"
+                        position: "top",
+                        text: "Maintenance Breakdown"
                     },
                     legend: {
                         visible: false
@@ -248,27 +248,27 @@
                         type: "pie",
                         startAngle: 150,
                         data: [{
-                            category: "Asia",
+                            category: "Plumbing",
                             value: 53.8,
                             color: "#9de219"
                         }, {
-                            category: "Europe",
+                            category: "Electrical",
                             value: 16.1,
                             color: "#90cc38"
                         }, {
-                            category: "Latin America",
+                            category: "Landscaping",
                             value: 11.3,
                             color: "#068c35"
                         }, {
-                            category: "Africa",
+                            category: "Interior",
                             value: 9.6,
                             color: "#006634"
                         }, {
-                            category: "Middle East",
+                            category: "Flooring",
                             value: 5.2,
                             color: "#004d38"
                         }, {
-                            category: "North America",
+                            category: "Exterior",
                             value: 3.6,
                             color: "#033939"
                         }]
@@ -296,7 +296,7 @@
 
                 objThis.element.find('#divReport').kendoChart({
                     title: {
-                        text: "Gross domestic product growth \n /GDP annual %/"
+                        text: "Rental Properties"
                     },
                     legend: {
                         position: "bottom"
@@ -309,16 +309,16 @@
                         style: "smooth"
                     },
                     series: [{
-                        name: "India",
+                        name: "Single Family",
                         data: [3.907, 7.943, 7.848, 9.284, 9.263, 9.801, 3.890, 8.238, 9.552, 6.855]
                     }, {
-                        name: "World",
+                        name: "Condo",
                         data: [1.988, 2.733, 3.994, 3.464, 4.001, 3.939, 1.333, -2.245, 4.339, 2.727]
                     }, {
-                        name: "Russian Federation",
+                        name: "Apartment",
                         data: [4.743, 7.295, 7.175, 6.376, 8.153, 8.535, 5.247, -7.832, 4.3, 4.3]
                     }, {
-                        name: "Haiti",
+                        name: "Townhome",
                         data: [-0.253, 0.362, -3.519, 1.799, 2.252, 3.343, 0.843, 2.877, -5.416, 5.590]
                     }],
                     valueAxis: {
@@ -372,7 +372,7 @@
                         type: "scatterLine"
                     },
                     series: [{
-                        name: "0.8C",
+                        name: "A",
                         data: [
                             [10, 10],
                             [15, 20],
@@ -385,7 +385,7 @@
                             [90, 100]
                         ]
                     }, {
-                        name: "1.6C",
+                        name: "B",
                         data: [
                             [10, 40],
                             [17, 50],
@@ -395,7 +395,7 @@
                             [60, 100]
                         ]
                     }, {
-                        name: "3.1C",
+                        name: "C",
                         data: [
                             [10, 70],
                             [13, 90],

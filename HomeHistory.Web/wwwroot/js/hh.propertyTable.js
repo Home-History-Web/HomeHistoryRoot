@@ -119,7 +119,8 @@
                 $.debug('Started hh.propertyTable.loadProperties');
 
                 var sharedDataSource = new kendo.data.DataSource({
-                    data: objOptions.properties
+                    data: objOptions.properties,
+                    pageSize: 10
                 });
 
                 var objGrid = objThis.element.find('.hh-property-grid');

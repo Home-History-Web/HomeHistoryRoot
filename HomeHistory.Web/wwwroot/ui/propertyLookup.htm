@@ -2,7 +2,17 @@
 
 <script type="text/javascript" src="https://services.postcodeanywhere.co.uk/js/address-3.91.js"></script>
 
-<script>(function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"HOMET11126",host:"HOMET11126.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//HOMET11126.pcapredict.com/js/sensor.js")</script>
+<script>
+    (function(n, t, i, r) {
+        var u, f;
+        n[i] = n[i] || {}, n[i].initial = {
+            accountCode: "HOMET11126",
+            host: "HOMET11126.pcapredict.com"
+        }, n[i].on = n[i].on || function() {
+            (n[i].onq = n[i].onq || []).push(arguments)
+        }, u = t.createElement("script"), u.async = !0, u.src = r, f = t.getElementsByTagName("script")[0], f.parentNode.insertBefore(u, f)
+    })(window, document, "pca", "//HOMET11126.pcapredict.com/js/sensor.js")
+</script>
 
 <!-- <script>(function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"CMPNY24342",host:"CMPNY24342.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//CMPNY24342.pcapredict.com/js/sensor.js")</script> -->
 
@@ -15,18 +25,38 @@
 <div class="hh-property-lookup" style="margin-top:30px;">
     <form>
         <div class="form-group">
-          <input type="text" class="form-control" id="line1" aria-describedby="addyHelp" placeholder="Enter address">
+            <input type="text" class="form-control" id="line1" aria-describedby="addyHelp" placeholder="Enter address">
         </div>
 
-        <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px;"></div>
+        <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px; font-weight: bold;"></div>
 
-        <button type="button" class="btn btn-primary btn-add-property">Add</button>
-        <button type="button" class="btn btn-default btn-cancel">Cancel</button>
+        <!-- <div class="h-md-100 card">
+            <div class="card-body">
+                <div class="justify-content-between g-0 row">
+                    <div class="pe-2 col-xxl col-sm-6 col-5">
+
+                        <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px;"></div>
+
+                        <div class="d-flex justify-content-between align-items-center fw-semi-bold fs--2">
+                            <p class="mb-1">
+
+                            </p>
+                            <div class="d-xxl-none">21%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div style="padding-top:18px;">
+            <button type="button" class="btn btn-primary btn-add-property">Add</button>
+            <button type="button" class="btn btn-default btn-cancel">Cancel</button>
+        </div>
     </form>
 
     <input type="hidden" id="line2" type="line2"></input><br>
     <input type="hidden" id="city" type="city"></input><br>
     <input type="hidden" id="state" type="state"></input><br>
     <input type="hidden" id="zip" type="zip"></input>
-</div>
 
+</div>
