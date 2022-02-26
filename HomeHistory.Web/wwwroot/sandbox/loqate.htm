@@ -1,76 +1,86 @@
 <html>
-    <head>                
-        <!-- CSS INCLUDES -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            
-        <!-- JAVASCRIPT INCLUDES -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<head>
+    <!-- CSS INCLUDES -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <!-- JAVASCRIPT INCLUDES -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js" integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA=" crossorigin="anonymous"></script>
 
-        <script>(function(n,t,i,r){var u,f;n[i]=n[i]||{},n[i].initial={accountCode:"CMPNY24342",host:"CMPNY24342.pcapredict.com"},n[i].on=n[i].on||function(){(n[i].onq=n[i].onq||[]).push(arguments)},u=t.createElement("script"),u.async=!0,u.src=r,f=t.getElementsByTagName("script")[0],f.parentNode.insertBefore(u,f)})(window,document,"pca","//CMPNY24342.pcapredict.com/js/sensor.js")</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 
-        <!-- Home History scripts -->
-        <script src="/js/hh.js"></script>
-        <script src="/js/hh.data.js"></script>
-        <script src="/js/hh.models.js"></script>
-        
-        <!-- Custom scripts -->
-        <script>
-            $(document).ready(function(){
-                $("#btnAdd").click(function(){
-                    // Create the json for adding the address
-                    // var addy = {
-                    //     "line1":$('#line1').val(),
-                    //     "line2":$('#line2').val(),
-                    //     "city":$('#city').val(),
-                    //     "state":$('#state').val(),
-                    //     "zip":$('#zip').val(),
-                    //     "formattedAddress":$('#formattedAddress').html().replace(/<br\s*[\/]?>/gi, "\n")
-                    // };
-                    
-                    $.hh.data.addProperty({
-                        "line1":$('#line1').val(),
-                        "line2":$('#line2').val(),
-                        "city":$('#city').val(),
-                        "state":$('#state').val(),
-                        "zip":$('#zip').val(),
-                        "formattedAddress":$('#formattedAddress').html().replace(/<br\s*[\/]?>/gi, "\n")
-                    }).then(function(property) {
-                        console.log(property);
-                    });
+    <script>
+        (function(n, t, i, r) {
+            var u, f;
+            n[i] = n[i] || {}, n[i].initial = {
+                accountCode: "RYANI11111",
+                host: "RYANI11111.pcapredict.com"
+            }, n[i].on = n[i].on || function() {
+                (n[i].onq = n[i].onq || []).push(arguments)
+            }, u = t.createElement("script"), u.async = !0, u.src = r, f = t.getElementsByTagName("script")[0], f.parentNode.insertBefore(u, f)
+        })(window, document, "pca", "//RYANI11111.pcapredict.com/js/sensor.js")
+    </script>
 
-                    // console.log(addy);
-                });      
+    <!-- Home History scripts -->
+    <script src="/js/hh.js"></script>
+    <script src="/js/hh.data.js"></script>
+    <script src="/js/hh.models.js"></script>
+
+    <!-- Custom scripts -->
+    <script>
+        $(document).ready(function() {
+            $("#btnAdd").click(function() {
+                // Create the json for adding the address
+                // var addy = {
+                //     "line1":$('#line1').val(),
+                //     "line2":$('#line2').val(),
+                //     "city":$('#city').val(),
+                //     "state":$('#state').val(),
+                //     "zip":$('#zip').val(),
+                //     "formattedAddress":$('#formattedAddress').html().replace(/<br\s*[\/]?>/gi, "\n")
+                // };
+
+                $.hh.data.addProperty({
+                    "line1": $('#line1').val(),
+                    "line2": $('#line2').val(),
+                    "city": $('#city').val(),
+                    "state": $('#state').val(),
+                    "zip": $('#zip').val(),
+                    "formattedAddress": $('#formattedAddress').html().replace(/<br\s*[\/]?>/gi, "\n")
+                }).then(function(property) {
+                    console.log(property);
+                });
+
+                // console.log(addy);
             });
-        </script>
+        });
+    </script>
 
-    </head>
+</head>
 
-    <body style="padding:12px;">
-        <form>
-            <div class="form-group">
-              <!-- <label for="line1">Address</label> -->
-              <input type="text" class="form-control" id="line1" aria-describedby="addyHelp" placeholder="Enter address">
-              <!-- <small id="addyHelp" class="form-text text-muted">Lookup Address Here</small> -->
-            </div>
+<body style="padding:12px;">
+    <form>
+        <div class="form-group">
+            <!-- <label for="line1">Address</label> -->
+            <input type="text" class="form-control" id="line1" aria-describedby="addyHelp" placeholder="Enter address">
+            <!-- <small id="addyHelp" class="form-text text-muted">Lookup Address Here</small> -->
+        </div>
 
-            <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px;"></div>
+        <div type="text" id="formattedAddress" type="formattedAddress" style="padding:8px;"></div>
 
-            <button type="button" id="btnAdd" class="btn btn-primary">Add</button>
-        </form>
+        <button type="button" id="btnAdd" class="btn btn-primary">Add</button>
+    </form>
 
 
-        <!-- <input type="text" id="line1" type="line1"></input><br> -->
-        <input type="hidden" id="line2" type="line2"></input><br>
-        <input type="hidden" id="city" type="city"></input><br>
-        <input type="hidden" id="state" type="state"></input><br>
-        <input type="hidden" id="zip" type="zip"></input>
-        <!-- <div type="text" id="formattedAddress" type="formattedAddress"></div> -->
-    </body>
+    <!-- <input type="text" id="line1" type="line1"></input><br> -->
+    <input type="hidden" id="line2" type="line2"></input><br>
+    <input type="hidden" id="city" type="city"></input><br>
+    <input type="hidden" id="state" type="state"></input><br>
+    <input type="hidden" id="zip" type="zip"></input>
+    <!-- <div type="text" id="formattedAddress" type="formattedAddress"></div> -->
+</body>
 
 </html>
